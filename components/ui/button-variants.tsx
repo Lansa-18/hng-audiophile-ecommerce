@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
 import type React from "react";
+import Image from "next/image";
 
 export function PrimaryButton({
   children,
@@ -31,6 +31,20 @@ export function SecondaryButton({
   );
 }
 
+export function SecondaryButtonInverted({
+  children,
+  ...props
+}: React.ComponentProps<typeof Button>) {
+  return (
+    <Button
+      {...props}
+      variant="outline"
+      className="hover:bg-transparent border-brand-black text-brand-white button-text h-auto cursor-pointer rounded-none bg-brand-black px-8 py-4 transition-colors duration-300 hover:text-brand-black"
+    >
+      {children}
+    </Button>
+  );
+}
 export function TextButton({
   children,
   ...props
@@ -39,10 +53,16 @@ export function TextButton({
     <Button
       {...props}
       variant="ghost"
-      className="text-brand-primary hover:text-brand-primary-light button-text h-auto cursor-pointer rounded-none px-0 transition-colors duration-300"
+      className="text-brand-black/50 hover:text-brand-primary-light button-text flex h-auto cursor-pointer items-center rounded-none px-0 text-[13px] leading-[normal] font-bold tracking-[1px] uppercase not-italic transition-colors duration-300"
     >
       {children}
-      <ChevronRight className="ml-2 h-4 w-4" />
+      <Image
+        src="/my_assets/icon-arrow-right.svg"
+        alt="arrow right"
+        width={5}
+        height={10}
+        className="ml-2"
+      />{" "}
     </Button>
   );
 }
