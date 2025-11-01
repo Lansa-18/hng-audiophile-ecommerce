@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-black text-brand-white px-container mt-40 pt-18.5 pb-13">
+    <footer className="bg-brand-black text-brand-white px-container pt-18.5 pb-13">
       <section className="flex justify-between">
         <article className="basis-135 space-y-9">
           <Image

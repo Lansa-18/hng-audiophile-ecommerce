@@ -3,6 +3,7 @@
 import HomePage from "@/pages/HomePage";
 import { usePathname } from "next/navigation";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 export default function PathBasedLayout({
   children,
@@ -16,9 +17,9 @@ export default function PathBasedLayout({
   }
 
   return (
-    <div className="bg-header-bg px-container min-h-screen">
-      <Navbar />
+    <div className="bg-brand-black min-h-screen">
       <main>{children}</main>
+      <Footer />
     </div>
   );
 }

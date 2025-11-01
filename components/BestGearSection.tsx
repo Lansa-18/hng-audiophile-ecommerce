@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function BestGearSection() {
   return (
-    <section className="bg-brand-lighter px-container mt-45 flex items-center justify-between">
+    <section className="bg-brand-lighter mt-45 flex items-center justify-between">
       <article className="text-brand-black w-[27.813rem] space-y-8">
         <h3 className="text-[2.5rem] leading-11 font-bold tracking-[1.429px] uppercase">
           Bringing you the <span className="text-brand-primary">best</span>{" "}

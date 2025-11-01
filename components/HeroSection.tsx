@@ -42,8 +42,12 @@ export default function HeroSection() {
   }
 
   return (
-    <div className="flex min-h-[30vh] items-center justify-center text-center text-[40px] leading-11 font-bold tracking-[1.429px] text-white uppercase not-italic">
-      {pathNameValue}
-    </div>
+    <>
+      <Navbar className="px-container border-blue-500" />
+
+      <div className="flex min-h-[30vh] items-center justify-center text-center text-[40px] leading-11 font-bold tracking-[1.429px] text-white uppercase not-italic">
+        {pathNameValue}
+      </div>
+    </>
   );
 }
