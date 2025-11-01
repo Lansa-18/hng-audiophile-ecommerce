@@ -19,7 +19,7 @@ export default function HeroSection() {
           fill
         />
 
-        <div className="relative min-h-screen border-blue-500 px-[10.313rem]">
+        <div className="px-container relative min-h-screen border-blue-500">
           <Navbar />
 
           <article className="text-brand-white mt-36 w-99.5 border-red-500">

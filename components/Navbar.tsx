@@ -5,7 +5,7 @@ interface NavbarProps {
   className?: string;
 }
 
-const navLinks = [
+export const navLinks = [
   {
     path: "/",
     label: "Home",

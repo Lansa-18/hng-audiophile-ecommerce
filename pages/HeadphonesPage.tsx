@@ -4,6 +4,10 @@ export default function HeadphonesPage() {
   return (
     <>
       <HeroSection />
+
+      <section className="">
+
+      </section>
     </>
   );
 }

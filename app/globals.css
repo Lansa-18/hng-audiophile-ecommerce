@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -42,7 +42,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
+
   /* Audiophile Design System Colors */
   --color-brand-primary: var(--brand-primary);
   --color-brand-primary-light: var(--brand-primary-light);
@@ -90,20 +90,20 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-  
+
   /* Audiophile Design System Colors */
-  --brand-primary: #D87D4A;
-  --brand-primary-light: #FBAF85;
+  --brand-primary: #d87d4a;
+  --brand-primary-light: #fbaf85;
   --brand-black: #000000;
   --brand-dark: #101010;
-  --header-bg: #0E0E0E;
-  --brand-light: #F1F1F1;
-  --brand-lighter: #FAFAFA;
-  --brand-white: #FFFFFF;
-  --brand-error: #CD2C2C;
-  
+  --header-bg: #0e0e0e;
+  --brand-light: #f1f1f1;
+  --brand-lighter: #fafafa;
+  --brand-white: #ffffff;
+  --brand-error: #cd2c2c;
+
   /* Font Family */
-  --font-manrope: 'Manrope', sans-serif;
+  --font-manrope: "Manrope", sans-serif;
 
   /* Font sizes */
   --text-13px: 13px;
@@ -253,4 +253,11 @@
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+@layer utilities {
+  .px-container {
+    padding-left: 10.313rem;
+    padding-right: 10.313rem;
+  }
 }

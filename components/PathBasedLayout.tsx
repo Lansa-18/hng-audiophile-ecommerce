@@ -16,7 +16,7 @@ export default function PathBasedLayout({
   }
 
   return (
-    <div className="bg-header-bg min-h-screen px-[10.313rem]">
+    <div className="bg-header-bg px-container min-h-screen">
       <Navbar />
       <main>{children}</main>
     </div>

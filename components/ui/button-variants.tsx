@@ -39,7 +39,7 @@ export function SecondaryButtonInverted({
     <Button
       {...props}
       variant="outline"
-      className="hover:bg-transparent border-brand-black text-brand-white button-text h-auto cursor-pointer rounded-none bg-brand-black px-8 py-4 transition-colors duration-300 hover:text-brand-black"
+      className="hover:bg-[#4C4C4C] border-none text-brand-white button-text h-auto cursor-pointer rounded-none bg-brand-black px-8 py-4 transition-colors duration-300 hover:text-brand-white"
     >
       {children}
     </Button>
