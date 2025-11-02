@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   PrimaryButton,
-  SecondaryButton,
 } from "@/components/ui/button-variants";
 import Navbar from "@/components/Navbar";
 import QuantityCounter from "@/components/QuantityCounter";
@@ -12,6 +10,8 @@ import GalleryGrid from "@/components/GalleryGrid";
 import FeaturesInTheBox from "@/components/FeaturesInTheBox";
 import FeatureItems from "@/components/FeatureItems";
 import BestGearSection from "@/components/BestGearSection";
+import { getProductBySlug } from "@/lib/get-product-data";
+import { notFound } from "next/navigation";
 
 interface Props {
   params: {
@@ -19,22 +19,23 @@ interface Props {
   };
 }
 
-const data = [
-  { quantity: "1x", item: "Headphone Unit" },
-  { quantity: "2x", item: "Replacement Earcups" },
-  { quantity: "1x", item: "User Manual" },
-  { quantity: "1x", item: "3.5mm 5m Audio Cable" },
-  { quantity: "1x", item: "Travel Bag" },
-];
-
 export default function ProductPage({ params }: Props) {
+  const product = getProductBySlug(params.slug);
+  console.log(product);
+
+  if (!product) {
+    notFound();
+  }
+
+  const features = product.features.split("\n\n");
+
   return (
     <>
       <Navbar className="px-container" />
       <main className="bg-brand-lighter text-brand-black px-container min-h-screen py-20">
         {/* Go Back Button */}
         <Link
-          href="/headphones"
+          href={`/${product.category}`}
           className="hover:text-brand-primary text-brand-black mb-14 inline-block text-[15px] leading-[25px] font-medium opacity-50 transition-colors duration-300"
         >
           Go Back
@@ -42,17 +43,14 @@ export default function ProductPage({ params }: Props) {
 
         {/* Product Item Section */}
         <ProductItemSection
-          headTitle="New Product"
-          imgSrc="/my_assets/xx99-mark2-headphone.png"
-          productTitle="XX99 Mark II Headphones"
-          description="The new XX99 Mark II headphones is the pinnacle of pristine
-                audio. It redefines your premium headphone experience by
-                reproducing the balanced depth and precision of studio-quality
-                sound."
+          headTitle={product.new ? "New Product" : undefined}
+          imgSrc={product.image.desktop.replace("./", "/")}
+          productTitle={product.name}
+          description={product.description}
         >
           <>
             <p className="mt-8 text-[18px] font-bold tracking-[1.29px]">
-              $ 2,999
+              $ {product.price.toLocaleString()}
             </p>
 
             <div className="mt-12 flex items-center gap-4">
@@ -65,29 +63,28 @@ export default function ProductPage({ params }: Props) {
 
         {/* Features and In The Box Section */}
         <FeaturesInTheBox
-          text1="Featuring a genuine leather head strap and premium earcups, these
-          headphones deliver superior comfort for those who like to enjoy
-          endless listening. It includes intuitive controls designed for any
-          situation. Whether you're taking a business call or just in your
-          own personal space, the auto on/off and pause features ensure that
-          you'll never miss a beat."
-          text2="The advanced Active Noise Cancellation with built-in equalizer allow
-          you to experience your audio world on your terms. It lets you enjoy
-          your audio in peace, but quickly interact with your surroundings when
-          you need to. Combined with Bluetooth 5. 0 compliant connectivity and
-          17 hour battery life, the XX99 Mark II headphones gives you superior
-          sound, cutting-edge technology, and a modern design aesthetic."
-          data={data}
+          text1={features[0]}
+          text2={features[1]}
+          data={product.includes.map((item) => ({
+            quantity: `${item.quantity}x`,
+            item: item.item,
+          }))}
         />
 
         {/* Gallery Section */}
         <GalleryGrid
-          img1="/my_assets/headphone-img1.png"
-          img2="/my_assets/headphone-img2.png"
-          img3="/my_assets/headphone-img3.png"
+          img1={product.gallery.first.desktop.replace("./", "/")}
+          img2={product.gallery.second.desktop.replace("./", "/")}
+          img3={product.gallery.third.desktop.replace("./", "/")}
         />
 
-        <Recommendations />
+        <Recommendations
+          recommendations={product.others.map((item) => ({
+            ...item,
+            image: item.image.desktop.replace("./", "/"),
+          }))}
+          category={product.category}
+        />
 
         <div className="mt-60">
           <FeatureItems />

@@ -27,13 +27,14 @@ export default function ProductItemSection({
     <section
       className={`flex items-center justify-between gap-33.5 ${className}`}
     >
-      <article className="bg-brand-light flex h-140 w-135 items-center justify-center rounded-xl">
+      <article className="bg-brand-light flex h-140 w-135 items-center justify-center rounded-xl relative">
         <Image
-          className="transition-transform duration-300 hover:scale-105"
+          className="border-red-500"
           src={imgSrc}
-          width={349}
-          height={386}
+          sizes="540px"
           alt={productTitle}
+          priority
+          fill
         />
       </article>
       <article className="text-brand-black flex-1 border-red-500">
