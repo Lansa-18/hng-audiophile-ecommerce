@@ -21,9 +21,9 @@ export default function BestGearSection() {
         <Image
           src="/my_assets/guy-with-headphones.png"
           alt="guy with headphones"
-          className="rounded-xl"
           width={540}
           height={588}
+          className="rounded-xl"
         />
       </article>
     </section>

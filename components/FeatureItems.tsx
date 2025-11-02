@@ -11,7 +11,7 @@ export default function FeatureItems() {
           height={160}
           src="/my_assets/home-headphones.png"
           alt="headphones in homepage"
-          className="-mt-15"
+          className="-mt-15 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Headphones
@@ -25,7 +25,7 @@ export default function FeatureItems() {
           height={160}
           src="/my_assets/home-speakers.png"
           alt="speakers in homepage"
-          className="-mt-15"
+          className="-mt-15 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Speakers
@@ -39,7 +39,7 @@ export default function FeatureItems() {
           height={160}
           src="/my_assets/home-earphones.png"
           alt="earphones in homepage"
-          className="-mt-15"
+          className="-mt-15 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Earphones

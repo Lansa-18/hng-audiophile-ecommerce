@@ -10,6 +10,8 @@ import ProductItemSection from "@/components/ProductItemSection";
 import Recommendations from "@/components/Recommendations";
 import GalleryGrid from "@/components/GalleryGrid";
 import FeaturesInTheBox from "@/components/FeaturesInTheBox";
+import FeatureItems from "@/components/FeatureItems";
+import BestGearSection from "@/components/BestGearSection";
 
 interface Props {
   params: {
@@ -86,6 +88,12 @@ export default function ProductPage({ params }: Props) {
         />
 
         <Recommendations />
+
+        <div className="mt-60">
+          <FeatureItems />
+        </div>
+
+        <BestGearSection />
       </main>
     </>
   );
