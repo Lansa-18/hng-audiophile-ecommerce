@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { PrimaryButton } from "./ui/button-variants";
+import QuantityCounter from "./QuantityCounter";
 
 interface ProductItemSectionProps {
   imgSrc: string;
@@ -7,6 +9,9 @@ interface ProductItemSectionProps {
   productTitle: string;
   description: string;
   className?: string;
+  slug?: string;
+  category?: "headphones" | "speakers" | "earphones";
+  children?: React.ReactNode;
 }
 
 export default function ProductItemSection({
@@ -15,6 +20,9 @@ export default function ProductItemSection({
   productTitle,
   description,
   className,
+  slug,
+  category,
+  children,
 }: ProductItemSectionProps) {
   return (
     <section
@@ -24,17 +32,21 @@ export default function ProductItemSection({
         <Image src={imgSrc} width={349} height={386} alt={productTitle} />
       </article>
       <article className="text-brand-black flex-1 border-red-500">
-        <div className="mb-10 flex flex-col gap-6">
+        <div className="mb-10 flex flex-col gap-4">
           <p className="text-brand-primary text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
             {headTitle}
           </p>
           <h1 className="heading-1">{productTitle}</h1>
-          <p className="text-[15px] leading-[25px] font-normal not-italic opacity-75">
+          <p className="mt-4 text-[15px] leading-[25px] font-normal not-italic opacity-75">
             {description}
           </p>
         </div>
 
-        <PrimaryButton className="uppercase">See Product</PrimaryButton>
+        {children || (
+          <Link href={`/${category}/${slug}`}>
+            <PrimaryButton className="uppercase">See Product</PrimaryButton>
+          </Link>
+        )}
       </article>
     </section>
   );
