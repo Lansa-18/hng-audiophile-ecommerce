@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PrimaryButton } from "./ui/button-variants";
-import QuantityCounter from "./QuantityCounter";
 
 interface ProductItemSectionProps {
   imgSrc: string;
@@ -29,7 +28,13 @@ export default function ProductItemSection({
       className={`flex items-center justify-between gap-33.5 ${className}`}
     >
       <article className="bg-brand-light flex h-140 w-135 items-center justify-center rounded-xl">
-        <Image src={imgSrc} width={349} height={386} alt={productTitle} />
+        <Image
+          className="transition-transform duration-300 hover:scale-105"
+          src={imgSrc}
+          width={349}
+          height={386}
+          alt={productTitle}
+        />
       </article>
       <article className="text-brand-black flex-1 border-red-500">
         <div className="mb-10 flex flex-col gap-4">
