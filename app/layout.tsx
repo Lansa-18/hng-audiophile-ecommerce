@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import PathBasedLayout from "@/components/PathBasedLayout";
 import Notification from "@/components/Notification";
+import ConvexClientProvider from "./providers/ConvexProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`text-brand-white antialiased`}>
-        <PathBasedLayout>{children}</PathBasedLayout>
-        <Notification />
+        <ConvexClientProvider>
+          <PathBasedLayout>{children}</PathBasedLayout>
+          <Notification />
+        </ConvexClientProvider>
       </body>
     </html>
   );

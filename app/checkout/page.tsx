@@ -11,12 +11,15 @@ import { checkoutFormSchema, type CheckoutFormData } from "./validation";
 import { PrimaryButton } from "@/components/ui/button-variants";
 import { ConfirmationModal } from "@/components/checkout/ConfirmationModal";
 import { formatProductName } from "@/lib/utils";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [orderItems, setOrderItems] = useState<typeof items>([]);
+  const createOrderMutation = useMutation(api.orders.createOrder);
 
   const {
     register,
@@ -49,18 +52,33 @@ export default function CheckoutPage() {
 
       setIsSubmitting(true);
 
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Process the order
-      console.log("Order placed:", {
-        ...data,
-        items,
-        totalPrice,
+      const orderData = {
+        customerName: data.name,
+        customerEmail: data.email,
+        customerPhone: data.phone,
+        shippingAddress: data.address,
+        city: data.city,
+        zipCode: data.zipCode,
+        country: data.country,
+        paymentMethod: data.paymentMethod as "e-money" | "cash",
+        eMoneyNumber: data.eMoneyNumber || undefined,
+        eMoneyPin: data.eMoneyPin || undefined,
+        items: items.map((item) => ({
+          productId: item.id,
+          productName: item.name,
+          productSlug: item.name.toLowerCase().replace(/ /g, "-"),
+          productImage: item.image,
+          quantity: item.quantity,
+          price: item.price,
+          itemTotal: item.price * item.quantity,
+        })),
+        subtotal: totalPrice,
         shipping,
         vat,
         grandTotal,
-      });
+      };
+
+      await createOrderMutation(orderData);
 
       // Save order items before clearing cart
       setOrderItems(items);
