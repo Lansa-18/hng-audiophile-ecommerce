@@ -1,11 +1,13 @@
 "use client";
 
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { PrimaryButton } from "./ui/button-variants";
 import QuantityCounter from "./QuantityCounter";
 import { useCartStore } from "@/store/cartStore";
 
 export default function Cart() {
+  const router = useRouter();
   const { items, isOpen, updateQuantity, clearCart, closeCart } =
     useCartStore();
 
@@ -14,6 +16,11 @@ export default function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0,
   );
+
+  const handleCheckout = () => {
+    closeCart();
+    router.push("/checkout");
+  };
 
   if (!isOpen) return null;
 
@@ -32,7 +39,7 @@ export default function Cart() {
           </h2>
           <button
             onClick={clearCart}
-            className="hover:text-brand-primary text-[15px] font-medium underline opacity-50 transition-colors duration-300"
+            className="hover:text-brand-primary text-15px font-medium underline opacity-50 transition-colors duration-300"
           >
             Remove all
           </button>
@@ -53,7 +60,7 @@ export default function Cart() {
                   className="rounded-xl"
                 />
                 <div className="">
-                  <h3 className="text-[15px] leading-[25px] font-bold">
+                  <h3 className="text-15px leading-[25px] font-bold">
                     {item.name
                       .replace(" Headphones", "")
                       .replace(" Speaker", "")
@@ -75,7 +82,7 @@ export default function Cart() {
         </article>
 
         <div className="mt-8 flex items-center justify-between border-red-500">
-          <span className="text-[15px] font-medium uppercase opacity-50">
+          <span className="text-15px font-medium uppercase opacity-50">
             Total
           </span>
           <span className="text-[18px] font-bold">
@@ -84,7 +91,10 @@ export default function Cart() {
         </div>
 
         <div className="mt-6 w-full">
-          <PrimaryButton className="w-full justify-center text-center">
+          <PrimaryButton
+            onClick={handleCheckout}
+            className="w-full justify-center text-center"
+          >
             CHECKOUT
           </PrimaryButton>
         </div>

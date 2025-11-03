@@ -57,25 +57,38 @@ export function TextField({
   );
 }
 
-interface RadioOptionProps {
+interface RadioOptionProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  checked: boolean;
-  onChange: () => void;
+  checked?: boolean;
 }
 
-export function RadioOption({ label, checked, onChange }: RadioOptionProps) {
+export function RadioOption({
+  label,
+  checked,
+  onChange,
+  value,
+  name,
+  ...props
+}: RadioOptionProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <button
-      type="button"
-      onClick={onChange}
+    <label
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`flex items-center gap-4 rounded-lg border px-6 py-4 w-full transition-colors ${
+      className={`flex w-full cursor-pointer items-center gap-4 rounded-lg border px-6 py-4 transition-colors ${
         checked ? "border-brand-primary" : "border-[#CFCFCF]"
       }`}
     >
+      <input
+        type="radio"
+        className="hidden"
+        value={value}
+        name={name}
+        onChange={onChange}
+        checked={checked}
+        {...props}
+      />
       {checked ? (
         <RadioCheckedIcon width={20} height={20} />
       ) : isHovered ? (
@@ -84,7 +97,7 @@ export function RadioOption({ label, checked, onChange }: RadioOptionProps) {
         <RadioUncheckedIcon width={20} height={20} />
       )}
       <span className="input-text text-brand-black">{label}</span>
-    </button>
+    </label>
   );
 }
 

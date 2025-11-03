@@ -20,7 +20,7 @@ export default function FeaturesInTheBox({
         <h2 className="text-[32px] leading-9 font-bold tracking-[1.15px] uppercase">
           FEATURES
         </h2>
-        <p className="text-[15px] leading-[25px] opacity-50">
+        <p className="text-15px leading-[25px] opacity-50">
           {text1}
           <br />
           <br />
@@ -35,10 +35,10 @@ export default function FeaturesInTheBox({
         <ul className="space-y-2">
           {data.map(({ quantity, item }) => (
             <li key={item} className="flex gap-6">
-              <span className="text-brand-primary text-[15px] font-bold">
+              <span className="text-brand-primary text-15px font-bold">
                 {quantity}
               </span>
-              <span className="text-[15px] opacity-50">{item}</span>
+              <span className="text-15px opacity-50">{item}</span>
             </li>
           ))}
         </ul>

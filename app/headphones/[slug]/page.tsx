@@ -32,7 +32,7 @@ export default async function ProductPage({ params }: Props) {
       <main className="bg-brand-lighter text-brand-black px-container min-h-screen py-20">
         <Link
           href={`/${product.category}`}
-          className="hover:text-brand-primary text-brand-black mb-14 inline-block text-[15px] leading-[25px] font-medium opacity-50 transition-colors duration-300"
+          className="hover:text-brand-primary text-brand-black text-15px mb-14 inline-block leading-[25px] font-medium opacity-50 transition-colors duration-300"
         >
           Go Back
         </Link>

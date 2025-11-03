@@ -5,10 +5,24 @@ import { useCartStore } from "@/store/cartStore";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextField, RadioOption } from "@/components/ui/form-elements";
+import { PrimaryButto                     <Button 
+                type="submit"
+                form="checkout-form"
+                className="bg-brand-primary hover:bg-brand-primary-light mt-8 w-full button-text h-auto cursor-pointer rounded-none px-8 py-4 text-white transition-colors duration-300"
+                disabled={isSubmitting || items.length === 0}
+              >
+                {isSubmitting ? "Processing..." : "CONTINUE & PAY"}
+              </Button><PrimaryButton 
+                type="submit"
+                form="checkout-form"
+                className="mt-8 w-full"
+                disabled={isSubmitting || items.length === 0}
+              >
+                {isSubmitting ? "Processing..." : "CONTINUE & PAY"}
+              </PrimaryButton>m "@/components/ui/button-variants";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { checkoutFormSchema, type CheckoutFormData } from "./validation";
-import { PrimaryButton } from "@/components/ui/button-variants";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCartStore();
@@ -19,7 +33,6 @@ export default function CheckoutPage() {
     handleSubmit,
     formState: { errors },
     watch,
-    reset
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
@@ -60,7 +73,6 @@ export default function CheckoutPage() {
 
       // Clear cart and show success
       clearCart();
-      reset();
       alert("Order placed successfully!");
 
       // Redirect to confirmation or home page
@@ -291,7 +303,6 @@ export default function CheckoutPage() {
               </div>
 
               <PrimaryButton
-                form="checkout-form"
                 type="submit"
                 className="mt-8 w-full"
                 disabled={isSubmitting || items.length === 0}

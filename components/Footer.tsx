@@ -14,7 +14,7 @@ export default function Footer() {
             alt="audiophile-white-logo"
           />
 
-          <p className="text-[15px] leading-[25px] font-normal not-italic opacity-50">
+          <p className="text-15px leading-[25px] font-normal not-italic opacity-50">
             Audiophile is an all in one stop to fulfill your audio needs.
             We&#39;re a small team of music lovers and sound specialists who are
             devoted to helping you get the most out of personal audio. Come and
@@ -90,7 +90,7 @@ export default function Footer() {
           </div>
         </article>
       </section>
-      <p className="mt-14 text-[15px] leading-[25px] font-bold not-italic opacity-50">
+      <p className="text-15px mt-14 leading-[25px] font-bold not-italic opacity-50">
         Copyright 2021. All Rights Reserved
       </p>
     </footer>

@@ -49,7 +49,7 @@ export default function ProductPage({ params }: Props) {
         {/* Go Back Button */}
         <Link
           href={`/${product.category}`}
-          className="hover:text-brand-primary text-brand-black mb-14 inline-block text-[15px] leading-[25px] font-medium opacity-50 transition-colors duration-300"
+          className="hover:text-brand-primary text-brand-black mb-14 inline-block text-15px leading-[25px] font-medium opacity-50 transition-colors duration-300"
         >
           Go Back
         </Link>

@@ -28,7 +28,7 @@ export default function HeroSection() {
                 New Product
               </p>
               <h1 className="heading-1">XX99 Mark II Headphones</h1>
-              <p className="text-[15px] leading-[25px] font-normal not-italic opacity-75">
+              <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
                 Experience natural, lifelike audio and exceptional build quality
                 made for the passionate music enthusiast.
               </p>

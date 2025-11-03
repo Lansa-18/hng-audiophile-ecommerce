@@ -39,7 +39,7 @@ export default function HomePage() {
                 <div className="text-brand-white mt-10 w-88.5 border-red-500">
                   <article className="mb-10 flex flex-col gap-6">
                     <h1 className="heading-1">ZX9 SPEAKER</h1>
-                    <p className="text-[15px] leading-[25px] font-normal not-italic opacity-75">
+                    <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
                       Upgrade to premium speakers that are phenomenally built to
                       deliver truly remarkable sound.
                     </p>
@@ -95,7 +95,7 @@ export default function HomePage() {
               </article>
             </div>
           </article>
-          
+
           <BestGearSection />
         </section>
       </main>

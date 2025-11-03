@@ -55,6 +55,7 @@
   --color-brand-error: var(--brand-error);
 
   --text-13px: var(--text-13px);
+  --text-15px: var(--text-15px);
 }
 
 :root {
@@ -107,6 +108,7 @@
 
   /* Font sizes */
   --text-13px: 13px;
+  --text-15px: 15px;
 }
 
 .dark {

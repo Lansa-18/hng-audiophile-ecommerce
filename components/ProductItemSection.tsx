@@ -27,7 +27,7 @@ export default function ProductItemSection({
     <section
       className={`flex items-center justify-between gap-33.5 ${className}`}
     >
-      <article className="bg-brand-light flex h-140 w-135 items-center justify-center rounded-xl relative">
+      <article className="bg-brand-light relative flex h-140 w-135 items-center justify-center rounded-xl">
         <Image
           className="border-red-500"
           src={imgSrc}
@@ -43,7 +43,7 @@ export default function ProductItemSection({
             {headTitle}
           </p>
           <h1 className="heading-1">{productTitle}</h1>
-          <p className="mt-4 text-[15px] leading-[25px] font-normal not-italic opacity-75">
+          <p className="text-15px mt-4 leading-[25px] font-normal not-italic opacity-75">
             {description}
           </p>
         </div>

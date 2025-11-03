@@ -5,7 +5,7 @@ export default function ProductDetailsPage() {
   return (
     <div className="bg-brand-lighter min-h-screen">
       {/* Go Back Button */}
-      <button className="text-brand-black text-[15px] leading-[25px] font-medium opacity-50">
+      <button className="text-brand-black text-15px leading-[25px] font-medium opacity-50">
         Go Back
       </button>
 
@@ -30,7 +30,7 @@ export default function ProductDetailsPage() {
             <br />
             Headphones
           </h1>
-          <p className="text-[15px] leading-[25px] opacity-50">
+          <p className="text-15px leading-[25px] opacity-50">
             The new XX99 Mark II headphones is the pinnacle of pristine audio.
             It redefines your premium headphone experience by reproducing the
             balanced depth and precision of studio-quality sound.
@@ -55,7 +55,7 @@ export default function ProductDetailsPage() {
       <section className="mt-40 flex gap-[125px]">
         <div className="flex-1 space-y-8">
           <h2 className="heading-2">FEATURES</h2>
-          <p className="text-[15px] leading-[25px] opacity-50">
+          <p className="text-15px leading-[25px] opacity-50">
             Featuring a genuine leather head strap and premium earcups, these
             headphones deliver superior comfort for those who like to enjoy
             endless listening. It includes intuitive controls designed for any
@@ -86,7 +86,7 @@ export default function ProductDetailsPage() {
             ].map(({ quantity, item }) => (
               <li key={item} className="flex gap-6">
                 <span className="text-brand-primary font-bold">{quantity}</span>
-                <span className="text-[15px] opacity-50">{item}</span>
+                <span className="text-15px opacity-50">{item}</span>
               </li>
             ))}
           </ul>
