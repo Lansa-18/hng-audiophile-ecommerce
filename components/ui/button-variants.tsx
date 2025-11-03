@@ -6,10 +6,11 @@ export function PrimaryButton({
   children,
   ...props
 }: React.ComponentProps<typeof Button>) {
+  const { className, ...otherProps } = props;
   return (
     <Button
-      {...props}
-      className="bg-brand-primary hover:bg-brand-primary-light button-text h-auto cursor-pointer rounded-none px-8 py-4 text-white transition-colors duration-300"
+      {...otherProps}
+      className={`bg-brand-primary hover:bg-brand-primary-light button-text h-auto cursor-pointer rounded-none px-8 py-4 text-white transition-colors duration-300 ${className || ""}`}
     >
       {children}
     </Button>
@@ -39,7 +40,7 @@ export function SecondaryButtonInverted({
     <Button
       {...props}
       variant="outline"
-      className="hover:bg-[#4C4C4C] border-none text-brand-white button-text h-auto cursor-pointer rounded-none bg-brand-black px-8 py-4 transition-colors duration-300 hover:text-brand-white"
+      className="text-brand-white button-text bg-brand-black hover:text-brand-white h-auto cursor-pointer rounded-none border-none px-8 py-4 transition-colors duration-300 hover:bg-[#4C4C4C]"
     >
       {children}
     </Button>

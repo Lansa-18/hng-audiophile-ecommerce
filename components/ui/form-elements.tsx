@@ -1,46 +1,57 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { cn } from "@/lib/utils";
 import RadioCheckedIcon from "@/components/icons/RadioCheckedIcon";
 import RadioUncheckedIcon from "@/components/icons/RadioUncheckedIcon";
 import RadioHoverIcon from "@/components/icons/RadioHoverIcon";
 import { useState } from "react";
 
-interface TextFieldProps {
+interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  placeholder: string;
   error?: string;
-  value?: string;
-  onChange?: (value: string) => void;
 }
 
-export function TextField({ label, placeholder, error, value, onChange }: TextFieldProps) {
-  const [inputValue, setInputValue] = useState(value || "");
+export function TextField({
+  label,
+  error,
+  className,
+  ...props
+}: TextFieldProps) {
   const [isFocused, setIsFocused] = useState(false);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-    onChange?.(e.target.value);
-  };
 
   return (
     <div className="space-y-2">
-      <div className="flex justify-between items-center">
-        <Label className="label-text text-brand-black">{label}</Label>
-        {error && <span className="text-xs font-normal text-brand-error">{error}</span>}
+      <div className="flex items-center justify-between">
+        <Label className="text-brand-black text-[12px] font-bold tracking-[-0.21px]">
+          {label}
+        </Label>
+        {error && (
+          <span className="text-brand-error text-[12px] font-medium">
+            {error}
+          </span>
+        )}
       </div>
       <Input
-        value={inputValue}
-        onChange={handleChange}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
-        placeholder={placeholder}
-        className={`input-text px-6 py-4 rounded-lg border ${
+        {...props}
+        onFocus={(e) => {
+          setIsFocused(true);
+          props.onFocus?.(e);
+        }}
+        onBlur={(e) => {
+          setIsFocused(false);
+          props.onBlur?.(e);
+        }}
+        className={cn(
+          "text-brand-black caret-brand-primary h-14 rounded-lg border px-6 text-[14px] font-bold transition-all duration-200",
+          "placeholder:text-brand-black/40 placeholder:text-[14px] placeholder:font-bold",
           error
-            ? "border-brand-error border-2"
-            : isFocused || inputValue
-            ? "border-brand-primary border-2"
-            : "border-[#CFCFCF]"
-        } focus-visible:ring-0 focus-visible:ring-offset-0`}
+            ? "border-brand-error focus:border-brand-error border-2"
+            : isFocused
+              ? "border-brand-primary border-2"
+              : "hover:border-brand-primary border-[#CFCFCF]",
+          "focus:border-2 focus-visible:ring-0 focus-visible:ring-offset-0",
+          className,
+        )}
       />
     </div>
   );
@@ -61,7 +72,7 @@ export function RadioOption({ label, checked, onChange }: RadioOptionProps) {
       onClick={onChange}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`flex items-center gap-4 px-6 py-4 rounded-lg border transition-colors ${
+      className={`flex items-center gap-4 rounded-lg border px-6 py-4 w-full transition-colors ${
         checked ? "border-brand-primary" : "border-[#CFCFCF]"
       }`}
     >
@@ -87,7 +98,7 @@ export function NumberInput({ value, onChange }: NumberInputProps) {
 
   return (
     <div
-      className="flex items-center justify-between bg-brand-light px-4 py-3 w-[120px]"
+      className="bg-brand-light flex w-[120px] items-center justify-between px-4 py-3"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >

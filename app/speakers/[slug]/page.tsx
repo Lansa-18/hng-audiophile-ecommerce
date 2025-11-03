@@ -1,9 +1,5 @@
 import Link from "next/link";
-import {
-  PrimaryButton,
-} from "@/components/ui/button-variants";
 import Navbar from "@/components/Navbar";
-import QuantityCounter from "@/components/QuantityCounter";
 import ProductItemSection from "@/components/ProductItemSection";
 import Recommendations from "@/components/Recommendations";
 import GalleryGrid from "@/components/GalleryGrid";
@@ -12,6 +8,7 @@ import FeatureItems from "@/components/FeatureItems";
 import BestGearSection from "@/components/BestGearSection";
 import { getProductBySlug } from "@/lib/get-product-data";
 import { notFound } from "next/navigation";
+import AddToCartButton from "@/components/AddToCartButton";
 
 interface Props {
   params: {
@@ -20,7 +17,8 @@ interface Props {
 }
 
 export default function ProductPage({ params }: Props) {
-  const product = getProductBySlug(params.slug);
+  const slug = params.slug;
+  const product = getProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -32,7 +30,6 @@ export default function ProductPage({ params }: Props) {
     <>
       <Navbar className="px-container" />
       <main className="bg-brand-lighter text-brand-black px-container min-h-screen py-20">
-        {/* Go Back Button */}
         <Link
           href={`/${product.category}`}
           className="hover:text-brand-primary text-brand-black mb-14 inline-block text-[15px] leading-[25px] font-medium opacity-50 transition-colors duration-300"
@@ -40,7 +37,6 @@ export default function ProductPage({ params }: Props) {
           Go Back
         </Link>
 
-        {/* Product Item Section */}
         <ProductItemSection
           headTitle={product.new ? "New Product" : undefined}
           imgSrc={product.image.desktop.replace("./", "/")}
@@ -53,14 +49,11 @@ export default function ProductPage({ params }: Props) {
             </p>
 
             <div className="mt-12 flex items-center gap-4">
-              {/* Quantity Counter */}
-              <QuantityCounter />
-              <PrimaryButton>ADD TO CART</PrimaryButton>
+              <AddToCartButton product={product} />
             </div>
           </>
         </ProductItemSection>
 
-        {/* Features and In The Box Section */}
         <FeaturesInTheBox
           text1={features[0]}
           text2={features[1]}
@@ -70,7 +63,6 @@ export default function ProductPage({ params }: Props) {
           }))}
         />
 
-        {/* Gallery Section */}
         <GalleryGrid
           img1={product.gallery.first.desktop.replace("./", "/")}
           img2={product.gallery.second.desktop.replace("./", "/")}

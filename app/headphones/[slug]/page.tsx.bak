@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PrimaryButton } from "@/components/ui/button-variants";
 import Navbar from "@/components/Navbar";
 import ProductItemSection from "@/components/ProductItemSection";
 import Recommendations from "@/components/Recommendations";
@@ -17,12 +18,27 @@ interface Props {
 }
 
 export default function ProductPage({ params }: Props) {
-  const slug = params.slug;
+  const slug = React.use(Promise.resolve(params.slug));
   const product = getProductBySlug(slug);
-
+  
   if (!product) {
     notFound();
   }
+
+  const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
+  const showNotification = useNotificationStore((state) => state.showNotification);
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+      image: product.image.desktop.replace("./", "/")
+    });
+    showNotification(`Added ${quantity} ${product.name} to cart`);
+  };
 
   const features = product.features.split("\n\n");
 
@@ -30,6 +46,7 @@ export default function ProductPage({ params }: Props) {
     <>
       <Navbar className="px-container" />
       <main className="bg-brand-lighter text-brand-black px-container min-h-screen py-20">
+        {/* Go Back Button */}
         <Link
           href={`/${product.category}`}
           className="hover:text-brand-primary text-brand-black mb-14 inline-block text-[15px] leading-[25px] font-medium opacity-50 transition-colors duration-300"
@@ -37,6 +54,7 @@ export default function ProductPage({ params }: Props) {
           Go Back
         </Link>
 
+        {/* Product Item Section */}
         <ProductItemSection
           headTitle={product.new ? "New Product" : undefined}
           imgSrc={product.image.desktop.replace("./", "/")}
@@ -49,11 +67,16 @@ export default function ProductPage({ params }: Props) {
             </p>
 
             <div className="mt-12 flex items-center gap-4">
-              <AddToCartButton product={product} />
+              {/* Quantity Counter */}
+              <QuantityCounter value={quantity} onChange={setQuantity} />
+              <PrimaryButton onClick={handleAddToCart}>
+                ADD TO CART
+              </PrimaryButton>
             </div>
           </>
         </ProductItemSection>
 
+        {/* Features and In The Box Section */}
         <FeaturesInTheBox
           text1={features[0]}
           text2={features[1]}
@@ -63,6 +86,7 @@ export default function ProductPage({ params }: Props) {
           }))}
         />
 
+        {/* Gallery Section */}
         <GalleryGrid
           img1={product.gallery.first.desktop.replace("./", "/")}
           img2={product.gallery.second.desktop.replace("./", "/")}

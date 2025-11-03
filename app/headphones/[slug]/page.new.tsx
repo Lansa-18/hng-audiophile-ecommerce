@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { PrimaryButton } from "@/components/ui/button-variants";
 import Navbar from "@/components/Navbar";
 import ProductItemSection from "@/components/ProductItemSection";
 import Recommendations from "@/components/Recommendations";
@@ -17,8 +18,7 @@ interface Props {
 }
 
 export default function ProductPage({ params }: Props) {
-  const slug = params.slug;
-  const product = getProductBySlug(slug);
+  const product = getProductBySlug(params.slug);
 
   if (!product) {
     notFound();

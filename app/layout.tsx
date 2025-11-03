@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PathBasedLayout from "@/components/PathBasedLayout";
+import Notification from "@/components/Notification";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`text-brand-white antialiased`}>
         <PathBasedLayout>{children}</PathBasedLayout>
+        <Notification />
       </body>
     </html>
   );
