@@ -7,6 +7,7 @@ import {
   SecondaryButtonInverted,
 } from "@/components/ui/button-variants";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -45,9 +46,11 @@ export default function HomePage() {
                     </p>
                   </article>
 
-                  <SecondaryButtonInverted className="uppercase">
-                    See Product
-                  </SecondaryButtonInverted>
+                  <Link href="/speakers/zx9-speaker">
+                    <SecondaryButtonInverted className="uppercase">
+                      See Product
+                    </SecondaryButtonInverted>
+                  </Link>
                 </div>
               </article>
             </div>
@@ -66,9 +69,11 @@ export default function HomePage() {
                     ZX7 SPEAKER
                   </h1>
 
-                  <SecondaryButton className="uppercase">
-                    See Product
-                  </SecondaryButton>
+                  <Link href="/speakers/zx9-speaker">
+                    <SecondaryButton className="uppercase">
+                      See Product
+                    </SecondaryButton>
+                  </Link>
                 </div>
               </article>
             </div>
@@ -88,9 +93,12 @@ export default function HomePage() {
                     YX1 EARPHONES
                   </h1>
 
-                  <SecondaryButton className="uppercase">
-                    See Product
-                  </SecondaryButton>
+                  <Link href="/earphones/yx1-earphones
+                  ">
+                    <SecondaryButton className="uppercase">
+                      See Product
+                    </SecondaryButton>
+                  </Link>
                 </div>
               </article>
             </div>

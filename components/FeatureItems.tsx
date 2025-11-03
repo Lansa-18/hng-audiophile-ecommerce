@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { TextButton } from "./ui/button-variants";
+import Link from "next/link";
 
 export default function FeatureItems() {
   return (
@@ -16,7 +17,9 @@ export default function FeatureItems() {
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Headphones
         </p>
-        <TextButton>Shop</TextButton>
+        <Link href="/headphones">
+          <TextButton>Shop</TextButton>
+        </Link>
       </div>
 
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
@@ -30,7 +33,9 @@ export default function FeatureItems() {
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Speakers
         </p>
-        <TextButton>Shop</TextButton>
+        <Link href="/speakers">
+          <TextButton>Shop</TextButton>
+        </Link>{" "}
       </div>
 
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
@@ -44,7 +49,9 @@ export default function FeatureItems() {
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Earphones
         </p>
-        <TextButton>Shop</TextButton>
+        <Link href="/earphones">
+          <TextButton>Shop</TextButton>
+        </Link>{" "}
       </div>
     </article>
   );

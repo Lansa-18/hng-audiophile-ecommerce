@@ -9,21 +9,25 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import { checkoutFormSchema, type CheckoutFormData } from "./validation";
 import { PrimaryButton } from "@/components/ui/button-variants";
+import { ConfirmationModal } from "@/components/checkout/ConfirmationModal";
+import { formatProductName } from "@/lib/utils";
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCartStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [orderItems, setOrderItems] = useState<typeof items>([]);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
-    reset
+    reset,
   } = useForm<CheckoutFormData>({
     resolver: zodResolver(checkoutFormSchema),
     defaultValues: {
-      paymentMethod: "e-money",
+      paymentMethod: "cash",
       eMoneyNumber: null,
       eMoneyPin: null,
     },
@@ -58,13 +62,11 @@ export default function CheckoutPage() {
         grandTotal,
       });
 
-      // Clear cart and show success
-      clearCart();
-      reset();
-      alert("Order placed successfully!");
+      // Save order items before clearing cart
+      setOrderItems(items);
 
-      // Redirect to confirmation or home page
-      // router.push("/confirmation");
+      // Show confirmation modal
+      setShowConfirmation(true);
     } catch (error) {
       console.error("Error placing order:", error);
       alert("There was an error placing your order. Please try again.");
@@ -227,34 +229,32 @@ export default function CheckoutPage() {
                 Summary
               </h2>
 
-              <div className="mb-8 max-h-[300px] space-y-6">
-                {items.map((item) => (
-                  <div key={item.id} className="flex items-center gap-4">
-                    <div className="bg-brand-light relative h-16 w-16 overflow-hidden rounded-lg">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        fill
-                        className="object-cover"
-                      />
+              <div className="scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 mb-8 max-h-[300px] overflow-y-auto pr-2">
+                <div className="space-y-6">
+                  {items.map((item) => (
+                    <div key={item.id} className="flex items-center gap-4">
+                      <div className="bg-brand-light relative h-16 w-16 shrink-0 overflow-hidden rounded-lg">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="text-brand-black min-w-0 flex-1">
+                        <h3 className="text-15px truncate font-bold">
+                          {formatProductName(item.name)}
+                        </h3>
+                        <p className="text-[14px] font-bold opacity-50">
+                          $ {item.price.toLocaleString()}
+                        </p>
+                      </div>
+                      <span className="text-brand-black text-15px shrink-0 font-bold opacity-50">
+                        x{item.quantity}
+                      </span>
                     </div>
-                    <div className="text-brand-black flex-1">
-                      <h3 className="text-15px font-bold">
-                        {item.name
-                          .replace(" Headphones", "")
-                          .replace(" Speaker", "")
-                          .replace(" Earphones", "")
-                          .replace("Mark", "MK")}
-                      </h3>
-                      <p className="text-[14px] font-bold opacity-50">
-                        $ {item.price.toLocaleString()}
-                      </p>
-                    </div>
-                    <span className="text-brand-black text-15px font-bold opacity-50">
-                      x{item.quantity}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               <div className="text-brand-black space-y-2">
@@ -302,6 +302,17 @@ export default function CheckoutPage() {
           </div>
         </div>
       </main>
+
+      <ConfirmationModal
+        isOpen={showConfirmation}
+        onClose={() => {
+          setShowConfirmation(false);
+          clearCart();
+          reset();
+        }}
+        orderItems={orderItems}
+        grandTotal={grandTotal}
+      />
     </>
   );
 }

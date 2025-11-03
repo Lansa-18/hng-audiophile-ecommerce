@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "./Navbar";
 import { PrimaryButton } from "./ui/button-variants";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function HeroSection() {
   const pathName = usePathname();
@@ -34,7 +35,9 @@ export default function HeroSection() {
               </p>
             </div>
 
-            <PrimaryButton className="uppercase">See Product</PrimaryButton>
+            <Link href="/headphones/xx99-mark-two-headphones">
+              <PrimaryButton className="uppercase">See Product</PrimaryButton>
+            </Link>
           </article>
         </div>
       </section>

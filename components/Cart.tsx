@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { PrimaryButton } from "./ui/button-variants";
 import QuantityCounter from "./QuantityCounter";
 import { useCartStore } from "@/store/cartStore";
+import { formatProductName } from "@/lib/utils";
 
 export default function Cart() {
   const router = useRouter();
@@ -45,40 +46,35 @@ export default function Cart() {
           </button>
         </div>
 
-        <article className="max-h-60 space-y-6">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center justify-between border-red-500"
-            >
-              <article className="flex items-center justify-between gap-4">
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={64}
-                  height={64}
-                  className="rounded-xl"
+        <article className="scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 max-h-90 overflow-y-auto pr-1">
+          <div className="space-y-6">
+            {items.map((item) => (
+              <div key={item.id} className="flex items-center justify-between">
+                <article className="flex items-center gap-4">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={64}
+                    height={64}
+                    className="rounded-lg"
+                  />
+                  <div>
+                    <h3 className="text-15px leading-[25px] font-bold">
+                      {formatProductName(item.name)}
+                    </h3>
+                    <p className="text-[14px] font-bold opacity-50">
+                      $ {item.price.toLocaleString()}
+                    </p>
+                  </div>
+                </article>
+                <QuantityCounter
+                  className="h-8"
+                  value={item.quantity}
+                  onChange={(value) => updateQuantity(item.id, value)}
                 />
-                <div className="">
-                  <h3 className="text-15px leading-[25px] font-bold">
-                    {item.name
-                      .replace(" Headphones", "")
-                      .replace(" Speaker", "")
-                      .replace(" Earphones", "")
-                      .replace("Mark", "MK")}
-                  </h3>
-                  <p className="text-[14px] font-bold opacity-50">
-                    $ {item.price.toLocaleString()}
-                  </p>
-                </div>
-              </article>
-              <QuantityCounter
-                className="h-8"
-                value={item.quantity}
-                onChange={(value) => updateQuantity(item.id, value)}
-              />
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </article>
 
         <div className="mt-8 flex items-center justify-between border-red-500">
