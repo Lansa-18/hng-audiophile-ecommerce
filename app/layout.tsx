@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import PathBasedLayout from "@/components/PathBasedLayout";
-import Notification from "@/components/Notification";
 import ConvexClientProvider from "./providers/ConvexProvider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={`text-brand-white antialiased`}>
         <ConvexClientProvider>
           <PathBasedLayout>{children}</PathBasedLayout>
-          <Notification />
+          <Toaster />
         </ConvexClientProvider>
       </body>
     </html>

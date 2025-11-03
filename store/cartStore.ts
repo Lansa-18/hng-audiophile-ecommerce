@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { toast } from "@/lib/toast";
 
 interface CartItem {
   id: number;
@@ -40,15 +41,27 @@ export const useCartStore = create<CartStore>()((set, get) => ({
         0,
       );
 
+      toast.success("Added to cart", {
+        description: `${newItem.name} x${newItem.quantity} added to your cart`,
+      });
+
       return { items: newItems, totalPrice };
     }),
   removeItem: (itemId) =>
     set((state) => {
+      const item = state.items.find((item) => item.id === itemId);
       const newItems = state.items.filter((item) => item.id !== itemId);
       const totalPrice = newItems.reduce(
         (sum, item) => sum + item.price * item.quantity,
         0,
       );
+
+      if (item) {
+        toast.info("Removed from cart", {
+          description: `${item.name} removed from your cart`,
+        });
+      }
+
       return { items: newItems, totalPrice };
     }),
   updateQuantity: (itemId, quantity) =>
@@ -60,9 +73,22 @@ export const useCartStore = create<CartStore>()((set, get) => ({
         (sum, item) => sum + item.price * item.quantity,
         0,
       );
+
+      const updatedItem = newItems.find((item) => item.id === itemId);
+      if (updatedItem) {
+        toast.info("Cart updated", {
+          description: `${updatedItem.name} quantity updated to ${quantity}`,
+        });
+      }
+
       return { items: newItems, totalPrice };
     }),
-  clearCart: () => set({ items: [], totalPrice: 0 }),
+  clearCart: () => {
+    toast.success("Cart cleared", {
+      description: "All items have been removed from your cart",
+    });
+    return set({ items: [], totalPrice: 0 });
+  },
   toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
   closeCart: () => set({ isOpen: false }),
 }));

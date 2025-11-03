@@ -11,6 +11,7 @@ import { checkoutFormSchema, type CheckoutFormData } from "./validation";
 import { PrimaryButton } from "@/components/ui/button-variants";
 import { ConfirmationModal } from "@/components/checkout/ConfirmationModal";
 import { formatProductName } from "@/lib/utils";
+import { toast } from "@/lib/toast";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
@@ -46,7 +47,9 @@ export default function CheckoutPage() {
   const onSubmit = async (data: CheckoutFormData) => {
     try {
       if (items.length === 0) {
-        alert("Your cart is empty!");
+        toast.warning("Cart is empty", {
+          description: "Add some items to your cart before checking out",
+        });
         return;
       }
 
@@ -78,7 +81,22 @@ export default function CheckoutPage() {
         grandTotal,
       };
 
-      await createOrderMutation(orderData);
+      await toast.promise(
+        createOrderMutation(orderData),
+        {
+          loading: "Processing your order...",
+          success: "Order placed successfully!",
+          error: "Failed to place order",
+        },
+        {
+          successOptions: {
+            description: "Thank you for your purchase!",
+          },
+          errorOptions: {
+            description: "Please try again later.",
+          },
+        },
+      );
 
       // Save order items before clearing cart
       setOrderItems(items);
@@ -87,7 +105,10 @@ export default function CheckoutPage() {
       setShowConfirmation(true);
     } catch (error) {
       console.error("Error placing order:", error);
-      alert("There was an error placing your order. Please try again.");
+      toast.error("Order failed", {
+        description:
+          error instanceof Error ? error.message : "Please try again later",
+      });
     } finally {
       setIsSubmitting(false);
     }
