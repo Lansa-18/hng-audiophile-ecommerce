@@ -8,7 +8,6 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { formatProductName } from "@/lib/utils";
 import { PrimaryButton } from "../ui/button-variants";
 
@@ -46,7 +45,10 @@ export function ConfirmationModal({
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogOverlay className="bg-black/40" />
-      <DialogContent className="text-brand-black max-w-140 rounded-xl p-12" showCloseButton={false}>
+      <DialogContent
+        className="text-brand-black max-w-140 rounded-xl p-12"
+        showCloseButton={false}
+      >
         <DialogTitle className="sr-only">Order Confirmation</DialogTitle>
         <section className="space-y-8">
           {/* Checkmark Icon */}
