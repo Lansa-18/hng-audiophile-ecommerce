@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import {
@@ -33,6 +34,7 @@ export function ConfirmationModal({
   orderItems,
 }: ConfirmationModalProps) {
   const router = useRouter();
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleBackToHome = () => {
     onClose();
@@ -40,6 +42,7 @@ export function ConfirmationModal({
   };
 
   const firstItem = orderItems[0];
+  const otherItems = orderItems.slice(1);
   const otherItemsCount = orderItems.length - 1;
 
   return (
@@ -76,42 +79,85 @@ export function ConfirmationModal({
           {/* Order summary */}
           <article className="flex overflow-hidden rounded-lg">
             {/* Items section */}
-            <div className="bg-brand-light text-brand-black basis-[65%] border-blue-500 p-6">
-              {firstItem && (
-                <div className="flex justify-between">
-                  <article className="flex items-start gap-4 border-red-500">
-                    <div className="bg-brand-light border-brand-black relative h-12.5 w-12.5 overflow-hidden rounded-lg">
-                      <Image
-                        src={firstItem.image}
-                        alt={firstItem.name}
-                        fill
-                        className="object-contain"
-                      />
+            <div className="bg-brand-light text-brand-black basis-[65%] p-6">
+              <div className="space-y-4">
+                {/* First Item */}
+                {firstItem && (
+                  <div className="flex justify-between">
+                    <article className="flex items-start gap-4">
+                      <div className="bg-brand-light relative h-12.5 w-12.5 overflow-hidden rounded-lg">
+                        <Image
+                          src={firstItem.image}
+                          alt={firstItem.name}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-brand-black text-[15px] font-bold">
+                          {formatProductName(firstItem.name)}
+                        </p>
+                        <p className="text-[14px] font-bold opacity-50">
+                          $ {firstItem.price.toLocaleString()}
+                        </p>
+                      </div>
+                    </article>
+                    <article>
+                      <span className="text-[15px] font-bold opacity-50">
+                        x{firstItem.quantity}
+                      </span>
+                    </article>
+                  </div>
+                )}
+
+                {/* Other Items */}
+                {otherItemsCount > 0 && (
+                  <>
+                    {isExpanded && (
+                      <div className="space-y-4">
+                        {otherItems.map((item) => (
+                          <div key={item.id} className="flex justify-between">
+                            <article className="flex items-start gap-4">
+                              <div className="bg-brand-light relative h-12.5 w-12.5 overflow-hidden rounded-lg">
+                                <Image
+                                  src={item.image}
+                                  alt={item.name}
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                              <div className="flex-1">
+                                <p className="text-brand-black text-[15px] font-bold">
+                                  {formatProductName(item.name)}
+                                </p>
+                                <p className="text-[14px] font-bold opacity-50">
+                                  $ {item.price.toLocaleString()}
+                                </p>
+                              </div>
+                            </article>
+                            <article>
+                              <span className="text-[15px] font-bold opacity-50">
+                                x{item.quantity}
+                              </span>
+                            </article>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <div className="mt-4">
+                      <hr className="my-3 h-px bg-black/10" />
+                      <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="w-full text-center text-[12px] font-bold tracking-[-0.21px] opacity-50 transition-opacity hover:opacity-100"
+                      >
+                        {isExpanded
+                          ? "View less"
+                          : `and ${otherItemsCount} other item(s)`}
+                      </button>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-brand-black text-[15px] font-bold">
-                        {formatProductName(firstItem.name)}
-                      </p>
-                      <p className="text-[14px] font-bold opacity-50">
-                        $ {firstItem.price.toLocaleString()}
-                      </p>
-                    </div>
-                  </article>
-                  <article>
-                    <span className="text-[15px] font-bold opacity-50">
-                      x{firstItem.quantity}
-                    </span>
-                  </article>
-                </div>
-              )}
-              {otherItemsCount > 0 && (
-                <div className="mt-4">
-                  <hr className="my-3 h-px bg-black/8" />
-                  <p className="text-center text-[12px] font-bold tracking-[-0.21px] opacity-50">
-                    and {otherItemsCount} other item(s)
-                  </p>
-                </div>
-              )}
+                  </>
+                )}
+              </div>
             </div>
             {/* Grand total section */}
             <div className="bg-brand-black flex basis-[43%] flex-col items-center justify-center p-6">
