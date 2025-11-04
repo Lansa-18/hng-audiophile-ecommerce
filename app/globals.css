@@ -56,6 +56,13 @@
 
   --text-13px: var(--text-13px);
   --text-15px: var(--text-15px);
+
+  /* BREAKPOINTS */
+  --breakpoint-tab-land: 74.999rem;
+  --breakpoint-custom-1050: 65.625rem;
+  --breakpoint-tab-port: 64rem;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-phone: 23.438rem;
 }
 
 :root {
@@ -261,5 +268,27 @@
   .px-container {
     padding-left: 10.313rem;
     padding-right: 10.313rem;
+  }
+
+  .hero-bg {
+    background-image: url("/assets/home/desktop/image-hero.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* Tablet Hero */
+  @media (max-width: 1024px) {
+    .hero-bg {
+      background-image: url("/assets/home/tablet/image-header.jpg");
+      background-position: center;
+    }
+  }
+
+  /* Mobile Hero */
+  @media (max-width: 390px) {
+    .hero-bg {
+      background-image: url("/assets/home/mobile/image-header.jpg");
+    }
   }
 }

@@ -59,9 +59,9 @@ export default function ProductDetailsPage() {
             Featuring a genuine leather head strap and premium earcups, these
             headphones deliver superior comfort for those who like to enjoy
             endless listening. It includes intuitive controls designed for any
-            situation. Whether you're taking a business call or just in your own
+            situation. Whether you&#39;re taking a business call or just in your own
             personal space, the auto on/off and pause features ensure that
-            you'll never miss a beat.
+            you&#39;ll never miss a beat.
             <br />
             <br />
             The advanced Active Noise Cancellation with built-in equalizer allow

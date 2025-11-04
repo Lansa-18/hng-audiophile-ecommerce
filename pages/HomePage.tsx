@@ -8,35 +8,43 @@ import {
 } from "@/components/ui/button-variants";
 import Image from "next/image";
 import Link from "next/link";
+import PatternCircles from "@/public/my_assets/pattern-circles.svg";
+import Zx9Speaker from "@/public/my_assets/speaker-zx9.png";
 
 export default function HomePage() {
   return (
     <div className="bg-brand-lighter min-h-screen">
       <HeroSection />
 
-      <main className="py-45">
-        <section className="px-container">
+      <main className="py-45 hidden">
+        <section className="mx-auto w-[80%]">
           <FeatureItems />
 
           {/* CATALOG ITEMS */}
           <article className="mt-42 flex flex-col gap-12 border-red-500">
-            <div className="bg-brand-primary relative h-140 rounded-xl">
-              <Image
-                src="/my_assets/pattern-circles.svg"
+            <div
+              className="bg-brand-primary relative h-140 rounded-xl"
+              style={{
+                backgroundImage: `url(${PatternCircles.src})`,
+                backgroundSize: "contain",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              {/* <Image
+                src={PatternCircles}
                 alt="pattern circles on orange background"
-                width={740}
-                height={740}
-                style={{ width: "auto", height: "auto" }}
-              />
+              /> */}
 
-              <article className="absolute bottom-0 left-[7.313rem] flex gap-34.5">
-                <Image
-                  src="/my_assets/speaker-zx9.png"
-                  alt="ZX9 SPEAKER"
-                  width={410}
-                  height={492}
-                  className="w-102.5 h-123"
-                />
+              <article className="absolute left-1/2 -translate-x-1/2 bottom-0 mx-auto flex w-[80%] justify-between gap-10 border border-red-500">
+                <div>
+                  <Image
+                    src="/my_assets/speaker-zx9.png"
+                    alt="ZX9 SPEAKER"
+                    width={410}
+                    height={492}
+                    className="h-123 w-102.5"
+                  />
+                </div>
 
                 <div className="text-brand-white mt-10 w-88.5 border-red-500">
                   <article className="mb-10 flex flex-col gap-6">

@@ -17,7 +17,7 @@ export default function PathBasedLayout({
 
   return (
     <div className="bg-brand-black min-h-screen">
-      <main>{children}</main>
+      <main className="">{children}</main>
       <Footer />
     </div>
   );
