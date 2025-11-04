@@ -70,7 +70,7 @@ export const toast = {
   ) => {
     return sonnerToast.promise(promise, {
       loading: messages.loading,
-      success: (data) => ({
+      success: () => ({
         message: messages.success,
         description: options?.successOptions?.description,
         action: options?.successOptions?.action,

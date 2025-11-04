@@ -2,7 +2,6 @@
 
 import HomePage from "@/pages/HomePage";
 import { usePathname } from "next/navigation";
-import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function PathBasedLayout({

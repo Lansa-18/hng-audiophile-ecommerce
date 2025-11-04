@@ -1,174 +1,203 @@
 import { transporter, verifyEmailConfig } from "@/lib/nodemailer";
-import { EmailOrderData, EmailResponse } from "@/types/email";
+import { EmailOrderData } from "@/types/email";
 import { NextResponse } from "next/server";
 
 // Verify email configuration on startup
 verifyEmailConfig().catch(console.error);
 
 function generateEmailHtml(order: EmailOrderData): string {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const formattedDate = new Date().toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
   return `
     <!DOCTYPE html>
     <html>
       <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Order Confirmation - Audiophile</title>
+        <title>Your Audiophile Order #${order.orderId} is Confirmed</title>
         <style>
-          body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #000000;
-            margin: 0;
-            padding: 0;
-            background-color: #F1F1F1;
-          }
-          .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #FFFFFF;
-            border-radius: 8px;
-          }
-          .header {
-            text-align: center;
-            padding: 20px 0;
-            border-bottom: 1px solid #E5E5E5;
-          }
-          .success-icon {
-            color: #D87D4A;
-            font-size: 48px;
-            margin-bottom: 20px;
-          }
-          .order-info {
-            background: #F8F8F8;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-          }
-          .items-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-          }
-          .items-table th,
-          .items-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #E5E5E5;
-          }
-          .items-table th {
-            background-color: #F8F8F8;
-            font-weight: bold;
-          }
-          .totals {
-            margin-top: 20px;
-            background: #F8F8F8;
-            padding: 20px;
-            border-radius: 8px;
-          }
-          .total-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 5px 0;
-          }
-          .grand-total {
-            color: #D87D4A;
-            font-weight: bold;
-            font-size: 20px;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 2px solid #E5E5E5;
-          }
-          .footer {
-            text-align: center;
-            padding: 20px;
-            color: rgba(0,0,0,0.5);
-            font-size: 14px;
-            margin-top: 20px;
-            border-top: 1px solid #E5E5E5;
-          }
           @media only screen and (max-width: 600px) {
-            .container {
-              padding: 20px 10px;
-            }
-            .items-table {
-              font-size: 14px;
-            }
+            .main-table { width: 100% !important; }
+            .content-padding { padding: 20px !important; }
+            .mobile-full-width { width: 100% !important; }
+            .mobile-text-center { text-align: center !important; }
+            .mobile-padding-adjust { padding: 10px !important; }
+            .mobile-button { width: 100% !important; display: block !important; }
           }
         </style>
       </head>
-      <body>
-        <div class="container">
-          <div class="header">
-            <div class="success-icon">✓</div>
-            <h1 style="color: #000000; font-size: 32px; margin: 0;">Thank You for Your Order!</h1>
-            <p style="color: rgba(0,0,0,0.7);">Order ID: ${order.orderId}</p>
-          </div>
-
-          <div class="order-info">
-            <h2 style="color: #000000; margin-bottom: 15px;">Order Details</h2>
-            <p><strong>Customer:</strong> ${order.customer.name}</p>
-            <p><strong>Email:</strong> ${order.customer.email}</p>
-            <p><strong>Phone:</strong> ${order.customer.phone}</p>
-
-            <h3 style="color: #000000; margin: 20px 0 10px;">Shipping Address</h3>
-            <p>${order.shippingAddress.address}</p>
-            <p>${order.shippingAddress.city}, ${order.shippingAddress.zipCode}</p>
-            <p>${order.shippingAddress.country}</p>
-
-            <p><strong>Payment Method:</strong> ${order.paymentMethod === "e-money" ? "E-Money" : "Cash on Delivery"}</p>
-          </div>
-
-          <table class="items-table">
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${order.items
-                .map(
-                  (item) => `
+      <body style="margin: 0; padding: 0; background-color: #F1F1F1; font-family: Arial, Helvetica, sans-serif;">
+        <!-- Main Container -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" bgcolor="#F1F1F1" style="font-family: Arial, Helvetica, sans-serif; line-height: 1.6;">
+          <tr>
+            <td align="center" style="padding: 40px 0;">
+              <!-- Content Container -->
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="main-table" style="background-color: #FFFFFF; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                <!-- Header Section -->
                 <tr>
-                  <td>${item.productName}</td>
-                  <td>x${item.quantity}</td>
-                  <td>$ ${item.price.toLocaleString()}</td>
-                  <td>$ ${item.itemTotal.toLocaleString()}</td>
+                  <td class="content-padding" style="padding: 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding-bottom: 20px;">
+                          <h1 style="margin: 0; color: #000000; font-size: 24px; font-weight: bold;">Hi ${order.customer.name},</h1>
+                          <p style="margin: 10px 0 0; color: #000000; font-size: 16px;">Thank you for your order! Your order has been confirmed and will be shipped soon.</p>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding-bottom: 30px; border-bottom: 1px solid #E5E5E5;">
+                          <p style="margin: 0; font-size: 18px; font-weight: bold; color: #000000;">Order #${order.orderId}</p>
+                          <p style="margin: 5px 0 0; color: rgba(0,0,0,0.5);">Placed on ${formattedDate}</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
                 </tr>
-              `,
-                )
-                .join("")}
-            </tbody>
-          </table>
 
-          <div class="totals">
-            <div class="total-row">
-              <span>Subtotal:</span>
-              <span>$ ${order.subtotal.toLocaleString()}</span>
-            </div>
-            <div class="total-row">
-              <span>Shipping:</span>
-              <span>$ ${order.shippingCost.toLocaleString()}</span>
-            </div>
-            <div class="total-row">
-              <span>VAT (20%):</span>
-              <span>$ ${order.vat.toLocaleString()}</span>
-            </div>
-            <div class="total-row grand-total">
-              <span>Grand Total:</span>
-              <span>$ ${order.grandTotal.toLocaleString()}</span>
-            </div>
-          </div>
+                <!-- Order Summary Section -->
+                <tr>
+                  <td class="content-padding" style="padding: 0 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding-bottom: 20px;">
+                          <h2 style="margin: 0; font-size: 18px; color: #000000;">Order Summary</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #F8F8F8; border-radius: 8px; padding: 20px;">
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            ${order.items
+                              .map(
+                                (item) => `
+                              <tr>
+                                <td style="padding-bottom: 15px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-weight: bold;">${item.productName}</td>
+                                      <td style="text-align: right; white-space: nowrap;">x${item.quantity}</td>
+                                    </tr>
+                                    <tr>
+                                      <td style="color: rgba(0,0,0,0.5);">$${item.price.toLocaleString()}</td>
+                                      <td style="text-align: right; white-space: nowrap;">$${item.itemTotal.toLocaleString()}</td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            `,
+                              )
+                              .join("")}
+                            <tr>
+                              <td style="padding-top: 15px; border-top: 1px solid #E5E5E5;">
+                                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                  <tr>
+                                    <td style="padding: 5px 0;">Subtotal:</td>
+                                    <td style="text-align: right;">$${order.subtotal.toLocaleString()}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 5px 0;">Shipping:</td>
+                                    <td style="text-align: right;">$${order.shippingCost.toLocaleString()}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 5px 0;">VAT (20%):</td>
+                                    <td style="text-align: right;">$${order.vat.toLocaleString()}</td>
+                                  </tr>
+                                  <tr>
+                                    <td style="padding: 10px 0; font-size: 18px; font-weight: bold; color: #D87D4A;">Grand Total:</td>
+                                    <td style="padding: 10px 0; font-size: 18px; font-weight: bold; color: #D87D4A; text-align: right;">$${order.grandTotal.toLocaleString()}</td>
+                                  </tr>
+                                </table>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
 
-          <div class="footer">
-            <p>You will receive a shipping notification once your order is on its way.</p>
-            <p>If you have any questions, please contact our support team.</p>
-            <p>© ${new Date().getFullYear()} Audiophile. All rights reserved.</p>
-          </div>
-        </div>
+                <!-- Shipping Details Section -->
+                <tr>
+                  <td class="content-padding" style="padding: 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding-bottom: 20px;">
+                          <h2 style="margin: 0; font-size: 18px; color: #000000;">Shipping Address</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #F8F8F8; border-radius: 8px; padding: 20px;">
+                          <p style="margin: 0 0 5px;">${order.shippingAddress.address}</p>
+                          <p style="margin: 0 0 5px;">${order.shippingAddress.city}, ${order.shippingAddress.zipCode}</p>
+                          <p style="margin: 0;">${order.shippingAddress.country}</p>
+                          <p style="margin: 15px 0 0; color: rgba(0,0,0,0.5);">Estimated delivery: 5-7 business days</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Support Section -->
+                <tr>
+                  <td class="content-padding" style="padding: 0 40px 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td style="padding-bottom: 20px;">
+                          <h2 style="margin: 0; font-size: 18px; color: #000000;">Need Help?</h2>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="background-color: #F8F8F8; border-radius: 8px; padding: 20px;">
+                          <p style="margin: 0 0 10px;">If you have any questions about your order, our support team is here to help.</p>
+                          <p style="margin: 0 0 5px;">Email: support@audiophile.com</p>
+                          <p style="margin: 0 0 5px;">Phone: +1 (555) 123-4567</p>
+                          <p style="margin: 0;">Hours: Mon-Fri, 9AM-5PM EST</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- CTA Button -->
+                <tr>
+                  <td class="content-padding" style="padding: 0 40px 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                      <tr>
+                        <td align="center">
+                          <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                            <tr>
+                              <td style="background-color: #D87D4A; border-radius: 8px;">
+                                <a href="${baseUrl}" target="_blank" style="display: inline-block; padding: 16px 48px; font-size: 15px; font-weight: bold; color: #FFFFFF; text-decoration: none;">VISIT OUR STORE</a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                  <td class="content-padding" style="padding: 0 40px 40px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="text-align: center;">
+                      <tr>
+                        <td style="padding-bottom: 20px; border-top: 1px solid #E5E5E5; padding-top: 20px;">
+                          <p style="margin: 0 0 10px; font-weight: bold;">Audiophile - Bringing you the best audio gear</p>
+                          <p style="margin: 0 0 10px; color: rgba(0,0,0,0.5);">Please keep this email for your records.</p>
+                          <p style="margin: 0; color: rgba(0,0,0,0.5);">This is an automated message, please do not reply.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
       </body>
     </html>
   `;

@@ -21,7 +21,7 @@ interface CartStore {
   closeCart: () => void;
 }
 
-export const useCartStore = create<CartStore>()((set, get) => ({
+export const useCartStore = create<CartStore>()((set) => ({
   items: [],
   isOpen: false,
   totalPrice: 0,
