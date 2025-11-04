@@ -31,10 +31,13 @@ export default function ProductItemSection({
         <Image
           className="border-red-500"
           src={imgSrc}
-          sizes="540px"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
           alt={productTitle}
           priority
           fill
+          style={{
+            objectFit: "cover",
+          }}
         />
       </article>
       <article className="text-brand-black flex-1 border-red-500">

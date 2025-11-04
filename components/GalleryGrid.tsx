@@ -16,6 +16,7 @@ export default function GalleryGrid({ img1, img2, img3 }: GalleryGridProps) {
               src={img1}
               alt="Gallery image 1"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 540px"
               className="object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
@@ -26,6 +27,7 @@ export default function GalleryGrid({ img1, img2, img3 }: GalleryGridProps) {
               src={img2}
               alt="Gallery image 2"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 540px"
               className="object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
@@ -37,7 +39,9 @@ export default function GalleryGrid({ img1, img2, img3 }: GalleryGridProps) {
             src={img3}
             alt="Gallery image 3"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
             className="object-cover transition-transform duration-300 hover:scale-105"
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>

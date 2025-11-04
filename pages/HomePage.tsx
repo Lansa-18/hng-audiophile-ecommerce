@@ -26,6 +26,7 @@ export default function HomePage() {
                 alt="pattern circles on orange background"
                 width={740}
                 height={740}
+                style={{ width: "auto", height: "auto" }}
               />
 
               <article className="absolute bottom-0 left-[7.313rem] flex gap-34.5">
@@ -33,8 +34,8 @@ export default function HomePage() {
                   src="/my_assets/speaker-zx9.png"
                   alt="ZX9 SPEAKER"
                   width={410}
-                  height={493}
-                  className=""
+                  height={492}
+                  className="w-102.5 h-123"
                 />
 
                 <div className="text-brand-white mt-10 w-88.5 border-red-500">
@@ -59,8 +60,10 @@ export default function HomePage() {
               <Image
                 src="/my_assets/speaker-zx7.png"
                 fill
+                sizes="100vw"
                 className="rounded-xl object-cover"
                 alt="speaker-zx7"
+                style={{ objectFit: "cover" }}
               />
 
               <article className="absolute top-1/2 left-[7.313rem] -translate-y-1/2">
@@ -84,7 +87,9 @@ export default function HomePage() {
                   src="/my_assets/image-earphones-yx1.jpg"
                   alt="yx1 earphones"
                   fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
                   className="rounded-xl object-cover"
+                  style={{ objectFit: "cover" }}
                 />
               </article>
               <article className="bg-brand-light relative h-80 w-135 flex-1 rounded-xl">
@@ -93,8 +98,10 @@ export default function HomePage() {
                     YX1 EARPHONES
                   </h1>
 
-                  <Link href="/earphones/yx1-earphones
-                  ">
+                  <Link
+                    href="/earphones/yx1-earphones
+                  "
+                  >
                     <SecondaryButton className="uppercase">
                       See Product
                     </SecondaryButton>

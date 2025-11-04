@@ -81,22 +81,72 @@ export default function CheckoutPage() {
         grandTotal,
       };
 
-      await toast.promise(
-        createOrderMutation(orderData),
-        {
-          loading: "Processing your order...",
-          success: "Order placed successfully!",
-          error: "Failed to place order",
+      const { orderId } = await createOrderMutation(orderData);
+
+      // Prepare email data
+      const emailData = {
+        orderId,
+        customer: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
         },
-        {
-          successOptions: {
-            description: "Thank you for your purchase!",
-          },
-          errorOptions: {
-            description: "Please try again later.",
-          },
+        shippingAddress: {
+          address: data.address,
+          city: data.city,
+          zipCode: data.zipCode,
+          country: data.country,
         },
-      );
+        paymentMethod: data.paymentMethod as "e-money" | "cash",
+        items: items.map((item) => ({
+          productId: item.id,
+          productName: item.name,
+          productImage: item.image,
+          quantity: item.quantity,
+          price: item.price,
+          itemTotal: item.price * item.quantity,
+        })),
+        subtotal: totalPrice,
+        shippingCost: shipping,
+        vat,
+        grandTotal,
+        createdAt: Date.now(),
+      };
+
+      // Send confirmation email
+      try {
+        const emailResponse = await fetch("/api/send-confirmation", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(emailData),
+        });
+
+        const emailResult = await emailResponse.json();
+
+        if (!emailResponse.ok) {
+          console.error("Email API error:", emailResult);
+          throw new Error(
+            emailResult.error || "Failed to send confirmation email",
+          );
+        }
+
+        if (emailResult.success) {
+          toast.success("Order confirmation email sent!", {
+            description: `Email sent to ${data.email}`,
+          });
+        } else {
+          throw new Error("Email sending failed");
+        }
+      } catch (emailError) {
+        // Don't block the checkout process if email fails
+        console.error("Error sending confirmation email:", emailError);
+        toast.error("Order placed but email delivery failed", {
+          description:
+            emailError instanceof Error
+              ? emailError.message
+              : "Our team has been notified and will contact you shortly.",
+        });
+      }
 
       // Save order items before clearing cart
       setOrderItems(items);
@@ -277,6 +327,7 @@ export default function CheckoutPage() {
                           src={item.image}
                           alt={item.name}
                           fill
+                          sizes="64px"
                           className="object-cover"
                         />
                       </div>

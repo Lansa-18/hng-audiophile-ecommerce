@@ -56,7 +56,7 @@ export default function Cart() {
                     alt={item.name}
                     width={64}
                     height={64}
-                    className="rounded-lg"
+                    className="h-16 w-16 rounded-lg"
                   />
                   <div>
                     <h3 className="text-15px leading-[25px] font-bold">

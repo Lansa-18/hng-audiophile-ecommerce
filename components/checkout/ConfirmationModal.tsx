@@ -51,8 +51,14 @@ export function ConfirmationModal({
       <DialogContent
         className="text-brand-black max-w-140 rounded-xl p-12"
         showCloseButton={false}
+        aria-describedby="order-confirmation-description"
+        aria-description="order-confirmation-description"
       >
         <DialogTitle className="sr-only">Order Confirmation</DialogTitle>
+        <div id="order-confirmation-description" className="sr-only">
+          Your order has been confirmed. You will receive an email confirmation
+          shortly.
+        </div>
         <section className="space-y-8">
           {/* Checkmark Icon */}
           <article className="h-16 w-16">
@@ -90,6 +96,7 @@ export function ConfirmationModal({
                           src={firstItem.image}
                           alt={firstItem.name}
                           fill
+                          sizes="50px"
                           className="object-contain"
                         />
                       </div>
@@ -123,6 +130,7 @@ export function ConfirmationModal({
                                   src={item.image}
                                   alt={item.name}
                                   fill
+                                  sizes="50px"
                                   className="object-contain"
                                 />
                               </div>

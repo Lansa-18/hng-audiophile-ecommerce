@@ -63,6 +63,7 @@ export function TextButton({
         width={5}
         height={10}
         className="ml-2"
+        style={{ width: "auto", height: "auto" }}
       />{" "}
     </Button>
   );

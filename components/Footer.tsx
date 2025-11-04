@@ -11,6 +11,7 @@ export default function Footer() {
             src="/my_assets/audiophile-white-logo.svg"
             width={135}
             height={25}
+            className="h-[25px] w-[135px]"
             alt="audiophile-white-logo"
           />
 
@@ -44,6 +45,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="block group-hover:hidden"
+                style={{ width: "auto", height: "auto" }}
               />
               <Image
                 src="/my_assets/facebook-hover.svg"
@@ -51,6 +53,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="hidden group-hover:block"
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
 
@@ -61,6 +64,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="block group-hover:hidden"
+                style={{ width: "auto", height: "auto" }}
               />
               <Image
                 src="/my_assets/twitter-hover.svg"
@@ -68,6 +72,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="hidden group-hover:block"
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
 
@@ -78,6 +83,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="block group-hover:hidden"
+                style={{ width: "auto", height: "auto" }}
               />
               <Image
                 src="/my_assets/instagram-hover.svg"
@@ -85,6 +91,7 @@ export default function Footer() {
                 width={24}
                 height={24}
                 className="hidden group-hover:block"
+                style={{ width: "auto", height: "auto" }}
               />
             </Link>
           </div>

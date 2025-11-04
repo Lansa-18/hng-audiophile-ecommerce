@@ -18,6 +18,9 @@ export default function HeroSection() {
           src="/my_assets/bg-bitmap.png"
           alt="headset-bg-image"
           fill
+          sizes="100vw"
+          priority
+          style={{ objectFit: "cover" }}
         />
 
         <div className="px-container relative min-h-screen border-blue-500">

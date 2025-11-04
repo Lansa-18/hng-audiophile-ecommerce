@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import Cart from "./Cart";
 import { useCartStore } from "@/store/cartStore";
+import Image from "next/image";
 
 interface NavbarProps {
   className?: string;
@@ -36,14 +36,15 @@ export default function Navbar({ className }: NavbarProps) {
       className={`text-13px border-brand-white/20 flex items-center justify-between border-b pt-8 pb-9 leading-[25px] font-bold tracking-[2px] uppercase not-italic ${className}`}
     >
       {/* LOGO */}
-      <div>
+      <Link href='/'>
         <Image
           src="/my_assets/audiophile-white-logo.svg"
           width={135}
           height={25}
           alt="audiophile-white-logo"
+          className="h-[25px] w-[135px]"
         />
-      </div>
+      </Link>
 
       <ul className="flex items-center justify-center gap-8.5">
         {navLinks.map((el) => (
@@ -69,6 +70,7 @@ export default function Navbar({ className }: NavbarProps) {
             width={23.33}
             height={20}
             alt="cart-icon"
+            className="h-5 w-[23.33px]"
           />
         </button>
         <Cart />

@@ -8,11 +8,11 @@ export default function FeatureItems() {
     <article className="flex items-center justify-between gap-7.5 border-blue-500">
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
         <Image
-          width={153}
+          width={154}
           height={160}
           src="/my_assets/home-headphones.png"
           alt="headphones in homepage"
-          className="-mt-15 transition-transform duration-300 hover:scale-105"
+          className="-mt-15 h-40 w-38.5 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Headphones
@@ -24,11 +24,11 @@ export default function FeatureItems() {
 
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
         <Image
-          width={153}
+          width={154}
           height={160}
           src="/my_assets/home-speakers.png"
           alt="speakers in homepage"
-          className="-mt-15 transition-transform duration-300 hover:scale-105"
+          className="-mt-15 h-40 w-38.5 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Speakers
@@ -40,11 +40,11 @@ export default function FeatureItems() {
 
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
         <Image
-          width={153}
+          width={154}
           height={160}
           src="/my_assets/home-earphones.png"
           alt="earphones in homepage"
-          className="-mt-15 transition-transform duration-300 hover:scale-105"
+          className="-mt-15 h-40 w-38.5 transition-transform duration-300 hover:scale-105"
         />
         <p className="text-brand-black text-center text-lg leading-[normal] font-bold tracking-[1.286px] uppercase not-italic">
           Earphones
