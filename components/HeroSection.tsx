@@ -13,7 +13,7 @@ export default function HeroSection() {
     return (
       <>
         <section className="hero-bg relative min-h-screen w-full rounded-none">
-          <div className="mx-auto min-h-screen w-[80%] border-blue-500">
+          <div className="mx-auto min-h-screen w-[80%] max-tab-port:w-[92%] border-blue-500">
             <Navbar />
 
             <article className="text-brand-white max-tab-port:left-1/2 max-tab-port:-translate-x-1/2 absolute top-[56%] w-99.5 -translate-y-1/2 border-red-500 max-tab-port:text-center">

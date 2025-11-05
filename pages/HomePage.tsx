@@ -9,44 +9,44 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import PatternCircles from "@/public/my_assets/pattern-circles.svg";
-import Zx9Speaker from "@/public/my_assets/speaker-zx9.png";
+import DesktopZx9Speaker from "@/public/assets/home/desktop/image-speaker-zx9.png";
+import TabletZx9Speaker from "@/public/assets/home/tablet/image-speaker-zx9.png";
+import MobileZx9Speaker from "@/public/assets/home/mobile/image-speaker-zx9.png";
 
 export default function HomePage() {
   return (
     <div className="bg-brand-lighter min-h-screen">
       <HeroSection />
 
-      <main className="py-45 hidden">
-        <section className="mx-auto w-[80%]">
+      <main className="py-45">
+        <section className="max-tab-port:w-[92%] mx-auto w-[80%]">
           <FeatureItems />
 
           {/* CATALOG ITEMS */}
           <article className="mt-42 flex flex-col gap-12 border-red-500">
             <div
-              className="bg-brand-primary relative h-140 rounded-xl"
+              className="bg-brand-primary relative h-140 max-tab-port:h-[769px] rounded-xl"
               style={{
                 backgroundImage: `url(${PatternCircles.src})`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
               }}
             >
-              {/* <Image
-                src={PatternCircles}
-                alt="pattern circles on orange background"
-              /> */}
-
-              <article className="absolute left-1/2 -translate-x-1/2 bottom-0 mx-auto flex w-[80%] justify-between gap-10 border border-red-500">
-                <div>
+              <article className="max-tab-port:flex-col max-tab-port:items-center max-tab-port:gap-16 absolute bottom-0 max-tab-port:bottom-auto max-tab-port:top-1/2 max-tab-port:-translate-y-1/2 left-1/2 mx-auto flex w-[80%] -translate-x-1/2 justify-between gap-20 border-red-500">
+                <div className="max-tab-port:w-[197px]">
                   <Image
-                    src="/my_assets/speaker-zx9.png"
+                    src={DesktopZx9Speaker}
                     alt="ZX9 SPEAKER"
-                    width={410}
-                    height={492}
-                    className="h-123 w-102.5"
+                    className="max-tab-port:hidden block w-full object-cover"
+                  />
+                  <Image
+                    src={TabletZx9Speaker}
+                    alt="ZX9 SPEAKER"
+                    className="max-tab-port:block hidden w-full object-cover"
                   />
                 </div>
 
-                <div className="text-brand-white mt-10 w-88.5 border-red-500">
+                <div className="text-brand-white mt-10 max-tab-port:mt-0 w-88.5 border-red-500 max-tab-port:text-center">
                   <article className="mb-10 flex flex-col gap-6">
                     <h1 className="heading-1">ZX9 SPEAKER</h1>
                     <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
@@ -89,7 +89,7 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="flex justify-between gap-4.5">
+            <div className="flex hidden justify-between gap-4.5">
               <article className="relative h-80 w-135 flex-1">
                 <Image
                   src="/my_assets/image-earphones-yx1.jpg"

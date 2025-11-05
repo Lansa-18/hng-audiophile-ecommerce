@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function FeatureItems() {
   return (
-    <article className="flex items-center justify-between gap-7.5 border-blue-500">
+    <article className="flex items-center justify-between gap-7.5 max-tab-port:gap-2.5 border-blue-500">
       <div className="bg-brand-light flex flex-1 flex-col items-center rounded-xl pb-7.5">
         <Image
           width={154}

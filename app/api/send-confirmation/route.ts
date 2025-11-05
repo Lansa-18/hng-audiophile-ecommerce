@@ -6,7 +6,7 @@ import { NextResponse } from "next/server";
 verifyEmailConfig().catch(console.error);
 
 function generateEmailHtml(order: EmailOrderData): string {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = "https://hng-audiophile-ecommerce.vercel.app/";
   const formattedDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
