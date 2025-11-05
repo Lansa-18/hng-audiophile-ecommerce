@@ -12,6 +12,9 @@ import PatternCircles from "@/public/my_assets/pattern-circles.svg";
 import DesktopZx9Speaker from "@/public/assets/home/desktop/image-speaker-zx9.png";
 import TabletZx9Speaker from "@/public/assets/home/tablet/image-speaker-zx9.png";
 import MobileZx9Speaker from "@/public/assets/home/mobile/image-speaker-zx9.png";
+import DesktopZx7Speaker from "@/public/assets/home/desktop/image-speaker-zx7.jpg";
+import TabletZx7Speaker from "@/public/assets/home/tablet/image-speaker-zx7.jpg";
+import MobileZx7Speaker from "@/public/assets/home/mobile/image-speaker-zx7.jpg";
 
 export default function HomePage() {
   return (
@@ -25,14 +28,14 @@ export default function HomePage() {
           {/* CATALOG ITEMS */}
           <article className="mt-42 flex flex-col gap-12 border-red-500">
             <div
-              className="bg-brand-primary relative h-140 max-tab-port:h-[769px] rounded-xl"
+              className="bg-brand-primary max-tab-port:h-[769px] relative h-140 rounded-xl"
               style={{
                 backgroundImage: `url(${PatternCircles.src})`,
                 backgroundSize: "contain",
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <article className="max-tab-port:flex-col max-tab-port:items-center max-tab-port:gap-16 absolute bottom-0 max-tab-port:bottom-auto max-tab-port:top-1/2 max-tab-port:-translate-y-1/2 left-1/2 mx-auto flex w-[80%] -translate-x-1/2 justify-between gap-20 border-red-500">
+              <article className="max-tab-port:flex-col max-tab-port:items-center max-tab-port:gap-16 max-tab-port:bottom-auto max-tab-port:top-1/2 max-tab-port:-translate-y-1/2 absolute bottom-0 left-1/2 mx-auto flex w-[80%] -translate-x-1/2 justify-between gap-20 border-red-500">
                 <div className="max-tab-port:w-[197px]">
                   <Image
                     src={DesktopZx9Speaker}
@@ -46,7 +49,7 @@ export default function HomePage() {
                   />
                 </div>
 
-                <div className="text-brand-white mt-10 max-tab-port:mt-0 w-88.5 border-red-500 max-tab-port:text-center">
+                <div className="text-brand-white max-tab-port:mt-0 max-tab-port:text-center mt-10 w-88.5 border-red-500">
                   <article className="mb-10 flex flex-col gap-6">
                     <h1 className="heading-1">ZX9 SPEAKER</h1>
                     <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
@@ -64,18 +67,10 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="relative h-80 rounded-xl">
-              <Image
-                src="/my_assets/speaker-zx7.png"
-                fill
-                sizes="100vw"
-                className="rounded-xl object-cover"
-                alt="speaker-zx7"
-                style={{ objectFit: "cover" }}
-              />
+            <div className="relative h-80 rounded-xl zx7-speaker-bg">
 
-              <article className="absolute top-1/2 left-[7.313rem] -translate-y-1/2">
-                <div className="mt-10 w-88.5 space-y-8 border-red-500">
+              <article className="absolute top-1/2 pl-16 -translate-y-1/2 border-red-500">
+                <div className="w-88.5 space-y-8 border-red-500">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     ZX7 SPEAKER
                   </h1>

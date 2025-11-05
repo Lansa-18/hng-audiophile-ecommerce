@@ -277,10 +277,22 @@
     background-position: center;
   }
 
+  .zx7-speaker-bg {
+    background-image: url("/assets/home/desktop/image-speaker-zx7.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   /* Tablet Hero */
   @media (max-width: 1024px) {
     .hero-bg {
       background-image: url("/assets/home/tablet/image-header.jpg");
+      background-position: center;
+    }
+
+    .zx7-speaker-bg {
+      background-image: url("/assets/home/tablet/image-speaker-zx7.jpg");
       background-position: center;
     }
   }
