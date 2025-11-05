@@ -11,10 +11,6 @@ import Link from "next/link";
 import PatternCircles from "@/public/my_assets/pattern-circles.svg";
 import DesktopZx9Speaker from "@/public/assets/home/desktop/image-speaker-zx9.png";
 import TabletZx9Speaker from "@/public/assets/home/tablet/image-speaker-zx9.png";
-import MobileZx9Speaker from "@/public/assets/home/mobile/image-speaker-zx9.png";
-import DesktopZx7Speaker from "@/public/assets/home/desktop/image-speaker-zx7.jpg";
-import TabletZx7Speaker from "@/public/assets/home/tablet/image-speaker-zx7.jpg";
-import MobileZx7Speaker from "@/public/assets/home/mobile/image-speaker-zx7.jpg";
 
 export default function HomePage() {
   return (
@@ -67,9 +63,8 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="relative h-80 rounded-xl zx7-speaker-bg">
-
-              <article className="absolute top-1/2 pl-16 -translate-y-1/2 border-red-500">
+            <div className="zx7-speaker-bg relative h-80 rounded-xl">
+              <article className="absolute top-1/2 -translate-y-1/2 border-red-500 pl-16">
                 <div className="w-88.5 space-y-8 border-red-500">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     ZX7 SPEAKER
@@ -84,19 +79,10 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="flex hidden justify-between gap-4.5">
-              <article className="relative h-80 w-135 flex-1">
-                <Image
-                  src="/my_assets/image-earphones-yx1.jpg"
-                  alt="yx1 earphones"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="rounded-xl object-cover"
-                  style={{ objectFit: "cover" }}
-                />
-              </article>
+            <div className="flex justify-between gap-4.5">
+              <article className="yx1-earphones-bg relative h-80 w-135 flex-1 rounded-xl"></article>
               <article className="bg-brand-light relative h-80 w-135 flex-1 rounded-xl">
-                <div className="absolute top-1/2 ml-24 w-88.5 -translate-y-1/2 space-y-8 border-red-500">
+                <div className="absolute top-1/2 pl-24 max-tab-port:pl-10 w-full -translate-y-1/2 space-y-8 border-red-500">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     YX1 EARPHONES
                   </h1>
