@@ -1,9 +1,12 @@
 import Image from "next/image";
 
+import BestGearImage from '@/public/assets/shared/desktop/image-best-gear.jpg';
+import TabletBestGearImage from '@/public/assets/shared/tablet/image-best-gear.jpg';
+
 export default function BestGearSection() {
   return (
-    <section className="bg-brand-lighter mt-45 flex gap-16 items-center justify-between">
-      <article className="text-brand-black w-[27.813rem] space-y-8">
+    <section className="bg-brand-lighter mt-45 flex gap-16 items-center justify-between max-tab-port:flex-col-reverse">
+      <article className="text-brand-black w-[27.813rem] border-red-500 max-tab-port:w-143.5 space-y-8 max-tab-port:text-center">
         <h3 className="text-[2.5rem] leading-11 font-bold tracking-[1.429px] uppercase">
           Bringing you the <span className="text-brand-primary">best</span>{" "}
           audio gear
@@ -19,11 +22,14 @@ export default function BestGearSection() {
       </article>
       <article className="">
         <Image
-          src="/my_assets/guy-with-headphones.png"
+          src={BestGearImage}
           alt="guy with headphones"
-          width={540}
-          height={588}
-          className="rounded-xl"
+          className="rounded-xl max-tab-port:hidden"
+        />
+        <Image
+          src={TabletBestGearImage}
+          alt="guy with headphones"
+          className="rounded-xl hidden max-tab-port:block"
         />
       </article>
     </section>
