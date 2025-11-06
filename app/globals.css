@@ -64,6 +64,7 @@
   --breakpoint-tablet: 48rem; /* 768px*/
   --breakpoint-custom-730: 45.625rem; /* 730px*/
   --breakpoint-custom-630: 39.375rem; /* 630px*/
+  --breakpoint-custom-400: 25rem; /* 400px*/
   --breakpoint-phone: 23.438rem; /* 375px*/
 }
 
@@ -165,15 +166,6 @@
 }
 
 /* Typography Utilities */
-@utility heading-1 {
-  font-family: var(--font-manrope);
-  font-size: 56px;
-  font-weight: 700;
-  line-height: 58px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
-
 @utility heading-2 {
   font-family: var(--font-manrope);
   font-size: 40px;
@@ -272,6 +264,15 @@
     padding-right: 10.313rem;
   }
 
+  .heading-1 {
+    font-family: var(--font-manrope);
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 58px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
   .hero-bg {
     background-image: url("/assets/home/desktop/image-hero.jpg");
     background-repeat: no-repeat;
@@ -319,6 +320,12 @@
 
     .yx1-earphones-bg {
       background-image: url("/assets/home/mobile/image-earphones-yx1.jpg");
+    }
+
+    .heading-1 {
+      font-size: 36px;
+      line-height: 40px;
+      letter-spacing: 1.286px;
     }
   }
 }

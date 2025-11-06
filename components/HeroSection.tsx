@@ -13,25 +13,30 @@ export default function HeroSection() {
     return (
       <>
         <section className="hero-bg relative min-h-screen w-full rounded-none">
-          <div className="mx-auto min-h-screen w-[80%] max-tab-port:w-[92%] border-blue-500">
+          <div className="max-tab-port:w-[92%] mx-auto min-h-screen w-[80%] border-blue-500">
             <Navbar />
 
-            <article className="text-brand-white max-tab-port:left-1/2 max-tab-port:-translate-x-1/2 absolute top-[56%] w-99.5 border -translate-y-1/2 border-red-500 max-tab-port:text-center">
-              <div className="mb-10 flex flex-col gap-6">
-                <p className="text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
-                  New Product
-                </p>
-                <h1 className="heading-1 max-custom-630:text-[36px]">XX99 Mark II Headphones</h1>
-                <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
-                  Experience natural, lifelike audio and exceptional build
-                  quality made for the passionate music enthusiast.
-                </p>
-              </div>
+            <div className="flex items-center">
+              <article className="text-brand-white max-tab-port:left-1/2 max-tab-port:-translate-x-1/2 max-tab-port:text-center absolute top-[56%] w-100 max-custom-630:w-95 max-custom-400:w-80 max-phone:w-65 -translate-y-1/2 border-red-500">
+                <div className="mb-10 flex flex-col gap-6">
+                  <p className="text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
+                    New Product
+                  </p>
+                  <h1 className="heading-1">XX99 Mark II Headphones</h1>
+                  <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
+                    Experience natural, lifelike audio and exceptional build
+                    quality made for the passionate music enthusiast.
+                  </p>
+                </div>
 
-              <Link href="/headphones/xx99-mark-two-headphones">
-                <PrimaryButton className="uppercase">See Product</PrimaryButton>
-              </Link>
-            </article>
+                <Link href="/headphones/xx99-mark-two-headphones">
+                  <PrimaryButton className="uppercase">
+                    See Product
+                  </PrimaryButton>
+                </Link>
+              </article>
+            </div>
+
           </div>
         </section>
       </>

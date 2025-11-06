@@ -45,7 +45,7 @@ export default function HomePage() {
                   />
                 </div>
 
-                <div className="text-brand-white max-tab-port:mt-0 max-tab-port:text-center mt-10 w-88.5 border-red-500">
+                <div className="text-brand-white max-tab-port:mt-0 max-tab-port:text-center mt-10 w-88.5 max-tab-port:w-full border-red-500">
                   <article className="mb-10 flex flex-col gap-6">
                     <h1 className="heading-1">ZX9 SPEAKER</h1>
                     <p className="text-15px leading-[25px] font-normal not-italic opacity-75">
@@ -63,9 +63,9 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="zx7-speaker-bg relative h-80 rounded-xl">
-              <article className="absolute top-1/2 -translate-y-1/2 border-red-500 pl-16">
-                <div className="w-88.5 space-y-8 border-red-500">
+            <div className="zx7-speaker-bg relative h-80 rounded-xl border-red-500">
+              <article className="max-custom-730:pl-12 max-custom-630:pl-5 absolute top-1/2 -translate-y-1/2 border-red-500 pl-16">
+                <div className="w-full space-y-8 border-red-500">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     ZX7 SPEAKER
                   </h1>
@@ -81,10 +81,10 @@ export default function HomePage() {
 
             <div className="max-custom-630:flex-col flex gap-4.5">
               {/* Image */}
-              <article className="yx1-earphones-bg relative h-80 basis-1/2 max-custom-630:basis-auto rounded-xl"></article>
+              <article className="yx1-earphones-bg max-custom-630:basis-auto relative h-80 basis-1/2 rounded-xl"></article>
 
               {/* Text */}
-              <article className="bg-brand-light relative h-80 basis-1/2 max-custom-630:basis-auto rounded-xl">
+              <article className="bg-brand-light max-custom-630:basis-auto relative h-80 basis-1/2 rounded-xl">
                 <div className="max-tab-port:pl-10 max-custom-730:pl-5 max-custom-630:pl-12 absolute top-1/2 -translate-y-1/2 space-y-8 pl-24">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     YX1 EARPHONES
