@@ -17,7 +17,7 @@ export default function HeroSection() {
             <Navbar />
 
             <div className="flex items-center">
-              <article className="text-brand-white max-tab-port:left-1/2 max-tab-port:-translate-x-1/2 max-tab-port:text-center absolute top-[56%] w-100 max-custom-630:w-95 max-custom-400:w-80 max-phone:w-65 -translate-y-1/2 border-red-500">
+              <article className="text-brand-white max-tab-port:left-1/2 max-tab-port:-translate-x-1/2 max-tab-port:text-center max-custom-630:w-95 max-custom-400:w-80 max-phone:w-65 absolute top-[56%] w-100 -translate-y-1/2 border-red-500">
                 <div className="mb-10 flex flex-col gap-6">
                   <p className="text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
                     New Product
@@ -36,7 +36,6 @@ export default function HeroSection() {
                 </Link>
               </article>
             </div>
-
           </div>
         </section>
       </>
@@ -44,12 +43,14 @@ export default function HeroSection() {
   }
 
   return (
-    <article className="px-container">
-      <Navbar className="border-blue-500" />
+    <div className="bg-brand-black">
+      <article className="max-tab-port:w-[92%] mx-auto w-[80%]">
+        <Navbar className="border-blue-500" />
 
-      <div className="flex min-h-[30vh] items-center justify-center text-center text-[40px] leading-11 font-bold tracking-[1.429px] text-white uppercase not-italic">
-        {pathNameValue}
-      </div>
-    </article>
+        <div className="flex min-h-[30vh] items-center justify-center text-center text-[40px] leading-11 font-bold tracking-[1.429px] text-white uppercase not-italic">
+          {pathNameValue}
+        </div>
+      </article>
+    </div>
   );
 }

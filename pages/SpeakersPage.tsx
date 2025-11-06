@@ -7,20 +7,48 @@ import { getProductsByCategory } from "@/lib/get-product-data";
 export default function SpeakersPage() {
 const speakers = getProductsByCategory("speakers");
   return (
-    <div>
+    <div className="bg-brand-lighter">
       <HeroSection />
 
-      <main className="bg-brand-lighter text-brand-black px-container border-red-500 py-40">
-        <article className="mb-50 space-y-40">
+      <main className="bg-brand-lighter text-brand-black max-tab-port:w-[92%] mx-auto w-[80%] border-red-500 py-40">
+        <article className="max-tab-port:hidden mb-50 space-y-40">
           {speakers.map((product, index) => (
             <ProductItemSection
-              key={product.id}
+              key={product.id * Math.random()}
               imgSrc={product.categoryImage.desktop.replace("./", "/")}
               productTitle={product.name}
               description={product.description}
               headTitle={product.new ? "New Product" : undefined}
               slug={product.slug}
-              category="headphones"
+              category="speakers"
+              className={index % 2 !== 0 ? "flex-row-reverse" : ""}
+            />
+          ))}
+        </article>
+        <article className="max-tab-port:block max-custom-630:hidden mb-50 hidden space-y-40">
+          {speakers.map((product, index) => (
+            <ProductItemSection
+              key={product.id * Math.random()}
+              imgSrc={product.categoryImage.tablet.replace("./", "/")}
+              productTitle={product.name}
+              description={product.description}
+              headTitle={product.new ? "New Product" : undefined}
+              slug={product.slug}
+              category="speakers"
+              className={index % 2 !== 0 ? "flex-row-reverse" : ""}
+            />
+          ))}
+        </article>
+        <article className="max-custom-630:block mb-50 hidden space-y-40">
+          {speakers.map((product, index) => (
+            <ProductItemSection
+              key={product.id * Math.random()}
+              imgSrc={product.categoryImage.mobile.replace("./", "/")}
+              productTitle={product.name}
+              description={product.description}
+              headTitle={product.new ? "New Product" : undefined}
+              slug={product.slug}
+              category="speakers"
               className={index % 2 !== 0 ? "flex-row-reverse" : ""}
             />
           ))}

@@ -25,27 +25,31 @@ export default function ProductItemSection({
 }: ProductItemSectionProps) {
   return (
     <section
-      className={`flex items-center justify-between gap-33.5 ${className}`}
+      className={`flex items-center justify-between gap-31 ${className} max-tab-port:flex-col max-tab-port:gap-10 border-blue-500`}
     >
-      <article className="bg-brand-light relative flex h-140 w-135 items-center justify-center rounded-xl">
-        <Image
-          className="border-red-500"
-          src={imgSrc}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 540px"
-          alt={productTitle}
-          priority
-          fill
-          style={{
-            objectFit: "cover",
-          }}
-        />
+      {/* <article className="bg-brand-light max-tab-port:w-full max-tab-port:basis-auto relative h-[500px] max-tab-port:h-[352px] basis-1/2 overflow-hidden rounded-lg">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="relative h-[90%] w-[85%] max-custom-630:h-full max-custom-630:w-full">
+            <Image
+              src={imgSrc}
+              alt={productTitle}
+              priority
+              fill
+              className="object-contain"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </article> */}
+      <article className="bg-brand-light relative basis-1/2 max-tab-port:basis-auto w-full h-[500px]">
+        <Image src={imgSrc} alt={productTitle} priority className="w-full rounded-xl border-red-500 object-cover" fill />
       </article>
-      <article className="text-brand-black flex-1 border-red-500">
-        <div className="mb-10 flex flex-col gap-4">
+      <article className="text-brand-black max-tab-port:items-center flex-1 border-red-500 text-center">
+        <div className="mb-10 flex flex-col max-tab-port:items-center gap-4 border-red-500">
           <p className="text-brand-primary text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
             {headTitle}
           </p>
-          <h1 className="heading-1">{productTitle}</h1>
+          <h1 className="heading-1 max-tab-port:w-[65%] max-tablet:w-[80%]">{productTitle}</h1>
           <p className="text-15px mt-4 leading-[25px] font-normal not-italic opacity-75">
             {description}
           </p>
