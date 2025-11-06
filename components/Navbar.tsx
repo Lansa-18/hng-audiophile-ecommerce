@@ -81,7 +81,9 @@ export default function Navbar({ className }: NavbarProps) {
       </nav>
 
       {/* Mobile Navbar */}
-      <article className="max-tab-port:flex hidden items-center justify-between pt-8 pb-9 border-b border-brand-white/20">
+      <article
+        className={` ${className} max-tab-port:flex border-brand-white/20 hidden items-center justify-between border-b pt-8 pb-9`}
+      >
         <div className="flex items-center gap-10.5">
           <Sheet>
             <SheetTrigger asChild>
@@ -89,7 +91,7 @@ export default function Navbar({ className }: NavbarProps) {
                 <Menu className="h-6 w-6" />
               </button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] p-6 bg-brand-black">
+            <SheetContent side="left" className="bg-brand-black w-[300px] p-6">
               <nav>
                 <ul className="flex flex-col gap-6">
                   {navLinks.map((el) => (

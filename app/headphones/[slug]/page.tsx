@@ -28,61 +28,79 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <>
-      <Navbar className="px-container" />
-      <main className="bg-brand-lighter text-brand-black px-container min-h-screen py-20">
-        <Link
-          href={`/${product.category}`}
-          className="hover:text-brand-primary text-brand-black text-15px mb-14 inline-block leading-[25px] font-medium opacity-50 transition-colors duration-300"
-        >
-          Go Back
-        </Link>
+      <Navbar className="bg-brand-black max-tab-port:w-[92%] mx-auto w-[80%]" />
+      <div className="bg-brand-lighter">
+        <main className="bg-brand-lighter text-brand-black max-tab-port:w-[92%] mx-auto min-h-screen w-[80%] border border-red-500 py-20">
+          <Link
+            href={`/${product.category}`}
+            className="hover:text-brand-primary text-brand-black text-15px mb-14 inline-block leading-[25px] font-medium opacity-50 transition-colors duration-300"
+          >
+            Go Back
+          </Link>
 
-        <ProductItemSection
-          headTitle={product.new ? "New Product" : undefined}
-          imgSrc={product.image.desktop.replace("./", "/")}
-          productTitle={product.name}
-          description={product.description}
-        >
-          <>
-            <p className="mt-8 text-[18px] font-bold tracking-[1.29px]">
-              $ {product.price.toLocaleString()}
-            </p>
+          <ProductItemSection
+            headTitle={product.new ? "New Product" : undefined}
+            imgSrc={product.image.desktop.replace("./", "/")}
+            productTitle={product.name}
+            description={product.description}
+          >
+            <>
+              <p className="max-tab-port:mt-0 mt-8 text-[18px] font-bold tracking-[1.29px]">
+                $ {product.price.toLocaleString()}
+              </p>
 
-            <div className="mt-12 flex items-center gap-4">
-              <AddToCartButton product={product} />
-            </div>
-          </>
-        </ProductItemSection>
+              <div className="max-tab-port:mt-7.5 mt-11.5 flex items-center gap-4">
+                <AddToCartButton product={product} />
+              </div>
+            </>
+          </ProductItemSection>
 
-        <FeaturesInTheBox
-          text1={features[0]}
-          text2={features[1]}
-          data={product.includes.map((item) => ({
-            quantity: `${item.quantity}x`,
-            item: item.item,
-          }))}
-        />
+          <FeaturesInTheBox
+            text1={features[0]}
+            text2={features[1]}
+            data={product.includes.map((item) => ({
+              quantity: `${item.quantity}x`,
+              item: item.item,
+            }))}
+          />
 
-        <GalleryGrid
-          img1={product.gallery.first.desktop.replace("./", "/")}
-          img2={product.gallery.second.desktop.replace("./", "/")}
-          img3={product.gallery.third.desktop.replace("./", "/")}
-        />
+          <div className="max-tab-port:hidden">
+            <GalleryGrid
+              img1={product.gallery.first.desktop.replace("./", "/")}
+              img2={product.gallery.second.desktop.replace("./", "/")}
+              img3={product.gallery.third.desktop.replace("./", "/")}
+            />
+          </div>
+          <div className="hidden max-tab-port:block max-custom-630:hidden">
+            <GalleryGrid
+              img1={product.gallery.first.tablet.replace("./", "/")}
+              img2={product.gallery.second.tablet.replace("./", "/")}
+              img3={product.gallery.third.tablet.replace("./", "/")}
+            />
+          </div>
+          <div className="hidden max-custom-630:block">
+            <GalleryGrid
+              img1={product.gallery.first.mobile.replace("./", "/")}
+              img2={product.gallery.second.mobile.replace("./", "/")}
+              img3={product.gallery.third.mobile.replace("./", "/")}
+            />
+          </div>
 
-        <Recommendations
-          recommendations={product.others.map((item) => ({
-            ...item,
-            image: item.image.desktop.replace("./", "/"),
-          }))}
-          category={product.category}
-        />
+          <Recommendations
+            recommendations={product.others.map((item) => ({
+              ...item,
+              image: item.image.desktop.replace("./", "/"),
+            }))}
+            category={product.category}
+          />
 
-        <div className="mt-60">
-          <FeatureItems />
-        </div>
+          <div className="mt-60">
+            <FeatureItems />
+          </div>
 
-        <BestGearSection />
-      </main>
+          <BestGearSection />
+        </main>
+      </div>
     </>
   );
 }

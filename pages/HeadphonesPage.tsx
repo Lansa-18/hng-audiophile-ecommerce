@@ -6,7 +6,6 @@ import { getProductsByCategory } from "@/lib/get-product-data";
 
 export default function HeadphonesPage() {
   const headphones = getProductsByCategory("headphones");
-  console.log(headphones);
   return (
     <div className="bg-brand-lighter">
       <HeroSection />

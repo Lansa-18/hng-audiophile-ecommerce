@@ -61,6 +61,7 @@
   --breakpoint-tab-land: 75rem; /* 1200px*/
   --breakpoint-custom-1050: 65.625rem; /* 1050px*/
   --breakpoint-tab-port: 64rem; /* 1024px*/
+  
   --breakpoint-tablet: 48rem; /* 768px*/
   --breakpoint-custom-730: 45.625rem; /* 730px*/
   --breakpoint-custom-630: 39.375rem; /* 630px*/
@@ -273,6 +274,15 @@
     text-transform: uppercase;
   }
 
+  .heading-product-details {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 1.429px;
+    text-transform: uppercase;
+  }
+
   .hero-bg {
     background-image: url("/assets/home/desktop/image-hero.jpg");
     background-repeat: no-repeat;
@@ -327,5 +337,13 @@
       line-height: 40px;
       letter-spacing: 1.286px;
     }
+
+    .heading-product-details {
+      font-size: 28px;
+      letter-spacing: 1px;
+      line-height: normal;
+    }
   }
+
+
 }
