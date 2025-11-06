@@ -52,7 +52,7 @@ export default function ProductItemSection({
       <article
         className={`text-brand-black max-tab-port:items-center ${children ? "" : "max-tab-port:text-center"} flex-1 border-red-500`}
       >
-        <div className="max-tab-port:items-center mb-10 max-custom-630:mb-5 flex flex-col gap-4 border-red-500">
+        <div className={`${children ? '' : 'max-tab-port:items-center'} mb-10 max-custom-630:mb-5 flex flex-col gap-4 border-red-500`}>
           <p className="text-brand-primary text-sm leading-[normal] font-normal tracking-[10px] uppercase not-italic">
             {headTitle}
           </p>

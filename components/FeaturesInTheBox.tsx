@@ -26,7 +26,7 @@ export default function FeaturesInTheBox({
         </div>
       </article>
 
-      <div className="w-[350px] max-tab-port:flex max-tab-port:w-[80%] max-tab-port:justify-between">
+      <div className="w-[350px] max-tab-port:flex max-tab-port:w-[80%] max-custom-630:w-full max-tab-port:justify-between">
         <h2 className="mb-8 text-[32px] max-custom-630:text-[24px] leading-9 font-bold tracking-[1.15px] max-custom-630:tracking-[0.857px] uppercase">
           IN THE BOX
         </h2>

@@ -17,7 +17,7 @@ interface Props {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const slug = params.slug;
+  const { slug } = await params;
   const product = getProductBySlug(slug);
 
   if (!product) {
@@ -30,7 +30,7 @@ export default async function ProductPage({ params }: Props) {
     <>
       <Navbar className="bg-brand-black max-tab-port:w-[92%] mx-auto w-[80%]" />
       <div className="bg-brand-lighter">
-        <main className="bg-brand-lighter text-brand-black max-tab-port:w-[92%] mx-auto min-h-screen w-[80%] border border-red-500 py-20">
+        <main className="bg-brand-lighter text-brand-black max-tab-port:w-[92%] mx-auto min-h-screen w-[80%] py-20">
           <Link
             href={`/${product.category}`}
             className="hover:text-brand-primary text-brand-black text-15px mb-14 inline-block leading-[25px] font-medium opacity-50 transition-colors duration-300"
@@ -71,14 +71,14 @@ export default async function ProductPage({ params }: Props) {
               img3={product.gallery.third.desktop.replace("./", "/")}
             />
           </div>
-          <div className="hidden max-tab-port:block max-custom-630:hidden">
+          <div className="max-tab-port:block max-custom-630:hidden hidden">
             <GalleryGrid
               img1={product.gallery.first.tablet.replace("./", "/")}
               img2={product.gallery.second.tablet.replace("./", "/")}
               img3={product.gallery.third.tablet.replace("./", "/")}
             />
           </div>
-          <div className="hidden max-custom-630:block">
+          <div className="max-custom-630:block hidden">
             <GalleryGrid
               img1={product.gallery.first.mobile.replace("./", "/")}
               img2={product.gallery.second.mobile.replace("./", "/")}
@@ -86,13 +86,33 @@ export default async function ProductPage({ params }: Props) {
             />
           </div>
 
-          <Recommendations
-            recommendations={product.others.map((item) => ({
-              ...item,
-              image: item.image.desktop.replace("./", "/"),
-            }))}
-            category={product.category}
-          />
+          <div className="max-tab-port:hidden">
+            <Recommendations
+              recommendations={product.others.map((item) => ({
+                ...item,
+                image: item.image.desktop.replace("./", "/"),
+              }))}
+              category={product.category}
+            />
+          </div>
+          <div className="max-tab-port:block max-custom-630:hidden hidden">
+            <Recommendations
+              recommendations={product.others.map((item) => ({
+                ...item,
+                image: item.image.tablet.replace("./", "/"),
+              }))}
+              category={product.category}
+            />
+          </div>
+          <div className="max-custom-630:block hidden">
+            <Recommendations
+              recommendations={product.others.map((item) => ({
+                ...item,
+                image: item.image.mobile.replace("./", "/"),
+              }))}
+              category={product.category}
+            />
+          </div>
 
           <div className="mt-60">
             <FeatureItems />

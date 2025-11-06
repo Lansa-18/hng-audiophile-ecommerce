@@ -27,11 +27,11 @@ export default function Cart() {
 
   return (
     <section
-      className="fixed inset-0 z-50 flex items-start justify-center border-red-500 bg-black/40"
+      className="max-custom-630:px-6 fixed inset-0 z-50 flex items-start justify-end bg-black/40 pt-32 pr-[10%]"
       onClick={closeCart}
     >
       <article
-        className="text-brand-black absolute top-32 right-41 w-[377px] rounded-lg border-blue-500 bg-white p-8"
+        className="text-brand-black max-custom-630:w-full w-[377px] rounded-lg border-red-500 bg-white p-8"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="mb-8 flex items-center justify-between">

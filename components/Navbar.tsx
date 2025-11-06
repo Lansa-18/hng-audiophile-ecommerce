@@ -76,8 +76,8 @@ export default function Navbar({ className }: NavbarProps) {
               className="h-5 w-[23.33px]"
             />
           </button>
-          <Cart />
         </div>
+        <Cart />
       </nav>
 
       {/* Mobile Navbar */}
@@ -122,7 +122,7 @@ export default function Navbar({ className }: NavbarProps) {
         </div>
 
         {/* CART ICON */}
-        <div className="">
+        <div className="relative">
           <button
             onClick={toggleCart}
             className="transition-opacity duration-300 hover:opacity-75"
@@ -135,6 +135,7 @@ export default function Navbar({ className }: NavbarProps) {
               className="h-5 w-[23.33px]"
             />
           </button>
+          <Cart />
         </div>
       </article>
     </>

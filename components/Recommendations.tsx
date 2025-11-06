@@ -40,10 +40,10 @@ export default function Recommendations({ recommendations, category }: Recommend
       <h3 className="mb-16 text-center text-[32px] leading-9 font-bold tracking-[1.15px] uppercase">
         YOU MAY ALSO LIKE
       </h3>
-      <div className="flex gap-8">
+      <div className="flex gap-8 max-tab-port:gap-3 max-custom-630:flex-col max-custom-630:gap-14">
         {data.map((product) => (
           <article key={product.name} className="flex-1 text-center">
-            <div className="bg-brand-light mb-10 flex h-[318px] items-center justify-center rounded-xl relative">
+            <div className="bg-brand-light mb-10 flex h-[318px] max-custom-630:h-30 items-center justify-center rounded-xl relative">
               <Image
                 src={product.image}
                 alt={product.name}
