@@ -79,18 +79,17 @@ export default function HomePage() {
               </article>
             </div>
 
-            <div className="flex justify-between gap-4.5">
-              <article className="yx1-earphones-bg relative h-80 w-135 flex-1 rounded-xl"></article>
-              <article className="bg-brand-light relative h-80 w-135 flex-1 rounded-xl">
-                <div className="absolute top-1/2 pl-24 max-tab-port:pl-10 w-full -translate-y-1/2 space-y-8 border-red-500">
+            <div className="max-custom-630:flex-col flex gap-4.5">
+              {/* Image */}
+              <article className="yx1-earphones-bg relative h-80 basis-1/2 max-custom-630:basis-auto rounded-xl"></article>
+
+              {/* Text */}
+              <article className="bg-brand-light relative h-80 basis-1/2 max-custom-630:basis-auto rounded-xl">
+                <div className="max-tab-port:pl-10 max-custom-730:pl-5 max-custom-630:pl-12 absolute top-1/2 -translate-y-1/2 space-y-8 pl-24">
                   <h1 className="text-brand-black text-[28px] leading-[normal] font-bold tracking-[2px] uppercase not-italic">
                     YX1 EARPHONES
                   </h1>
-
-                  <Link
-                    href="/earphones/yx1-earphones
-                  "
-                  >
+                  <Link href="/earphones/yx1-earphones">
                     <SecondaryButton className="uppercase">
                       See Product
                     </SecondaryButton>

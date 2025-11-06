@@ -6,14 +6,14 @@ import LogoWhite from "@/public/my_assets/audiophile-white-logo.svg";
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-black text-brand-white pt-18.5 pb-13">
+    <footer className="bg-brand-black text-brand-white pt-18.5 max-custom-630:py-12 pb-13">
       <>
         {/* MOBILE UI */}
         <section className="max-tab-port:w-[92%] max-tab-port:block mx-auto hidden space-y-20">
-          <article className="flex flex-col items-start space-y-8">
+          <article className="flex flex-col items-start max-custom-630:items-center space-y-8 max-custom-630:space-y-12">
             <Image src={LogoWhite} alt="audiophile-white-logo" />
 
-            <ul className="flex items-center justify-center gap-8.5">
+            <ul className="flex items-center justify-center gap-8.5 max-custom-630:flex-col">
               {navLinks.map((el) => (
                 <li key={el.label}>
                   <Link
@@ -34,12 +34,12 @@ export default function Footer() {
             </p>
           </article>
 
-          <article className="flex items-center justify-between">
+          <article className="flex items-center justify-between max-custom-630:flex-col max-custom-630:gap-12">
             <p className="text-15px leading-[25px] font-bold not-italic opacity-50">
               Copyright 2021. All Rights Reserved
             </p>
 
-            <div className="flex items-center gap-4 self-end">
+            <div className="flex items-center gap-4 self-end max-custom-630:self-auto">
               <Link href="#" className="group">
                 <Image
                   src="/my_assets/facebook-icon.svg"

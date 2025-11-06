@@ -58,11 +58,13 @@
   --text-15px: var(--text-15px);
 
   /* BREAKPOINTS */
-  --breakpoint-tab-land: 74.999rem;
-  --breakpoint-custom-1050: 65.625rem;
-  --breakpoint-tab-port: 64rem;
-  --breakpoint-tablet: 48rem;
-  --breakpoint-phone: 23.438rem;
+  --breakpoint-tab-land: 75rem; /* 1200px*/
+  --breakpoint-custom-1050: 65.625rem; /* 1050px*/
+  --breakpoint-tab-port: 64rem; /* 1024px*/
+  --breakpoint-tablet: 48rem; /* 768px*/
+  --breakpoint-custom-730: 45.625rem; /* 730px*/
+  --breakpoint-custom-630: 39.375rem; /* 630px*/
+  --breakpoint-phone: 23.438rem; /* 375px*/
 }
 
 :root {
@@ -307,9 +309,16 @@
   }
 
   /* Mobile Hero */
-  @media (max-width: 390px) {
+  @media (max-width: 630px) {
     .hero-bg {
       background-image: url("/assets/home/mobile/image-header.jpg");
+    }
+    .zx7-speaker-bg {
+      background-image: url("/assets/home/mobile/image-speaker-zx7.jpg");
+    }
+
+    .yx1-earphones-bg {
+      background-image: url("/assets/home/mobile/image-earphones-yx1.jpg");
     }
   }
 }
