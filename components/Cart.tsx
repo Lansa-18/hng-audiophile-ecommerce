@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { PrimaryButton } from "./ui/button-variants";
 import QuantityCounter from "./QuantityCounter";
 import { useCartStore } from "@/store/cartStore";
@@ -22,6 +23,18 @@ export default function Cart() {
     closeCart();
     router.push("/checkout");
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
