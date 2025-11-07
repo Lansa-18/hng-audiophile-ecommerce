@@ -32,6 +32,9 @@ export const navLinks = [
 
 export default function Navbar({ className }: NavbarProps) {
   const toggleCart = useCartStore((state) => state.toggleCart);
+  const items = useCartStore((state) => state.items);
+
+  const cartItemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <>
@@ -76,6 +79,11 @@ export default function Navbar({ className }: NavbarProps) {
               className="h-5 w-[23.33px]"
             />
           </button>
+          {cartItemCount > 0 && (
+            <div className="bg-brand-primary absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold text-white">
+              {cartItemCount}
+            </div>
+          )}
         </div>
         <Cart />
       </nav>
@@ -135,8 +143,13 @@ export default function Navbar({ className }: NavbarProps) {
               className="h-5 w-[23.33px]"
             />
           </button>
-          <Cart />
+          {cartItemCount > 0 && (
+            <div className="bg-brand-primary absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full text-[10px] font-bold text-white">
+              {cartItemCount}
+            </div>
+          )}
         </div>
+        <Cart />
       </article>
     </>
   );

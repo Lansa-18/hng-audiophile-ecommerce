@@ -26,13 +26,13 @@ export default function Cart() {
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
 
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isOpen]);
 
@@ -40,7 +40,7 @@ export default function Cart() {
 
   return (
     <section
-      className="max-custom-630:px-6 fixed inset-0 z-50 flex items-start justify-end bg-black/40 pt-32 pr-[10%]"
+      className="max-custom-630:px-4 fixed inset-0 z-50 flex items-start justify-end bg-black/40 pt-32 pr-[10%]"
       onClick={closeCart}
     >
       <article
