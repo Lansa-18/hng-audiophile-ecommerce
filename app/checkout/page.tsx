@@ -166,9 +166,9 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <Navbar className="px-container" />
+      <Navbar className="max-tab-port:w-[92%] mx-auto w-[80%]" />
       <main className="bg-brand-light min-h-screen">
-        <div className="px-container px-6 pt-16 pb-35 lg:px-40">
+        <div className="max-tab-port:w-[92%] mx-auto w-[80%] pt-16 pb-35">
           <button className="text-brand-black hover:text-brand-primary text-15px mb-8 cursor-pointer font-medium opacity-50 transition-colors duration-300">
             Go Back
           </button>
@@ -178,9 +178,9 @@ export default function CheckoutPage() {
             <form
               id="checkout-form"
               onSubmit={handleSubmit(onSubmit)}
-              className="rounded-lg bg-white p-8 lg:p-12"
+              className="rounded-lg bg-white p-6 sm:p-8 lg:p-12"
             >
-              <h1 className="text-brand-black mb-10 text-3xl font-bold tracking-[1px]">
+              <h1 className="text-brand-black max-custom-630:text-[28px] mb-10 text-[32px] font-bold tracking-[1px]">
                 CHECKOUT
               </h1>
 
@@ -251,11 +251,11 @@ export default function CheckoutPage() {
                 <h2 className="text-brand-primary text-[13px] font-bold tracking-[1px] uppercase">
                   Payment Details
                 </h2>
-                <div className="flex justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:justify-between">
                   <label className="text-brand-black text-[12px] font-bold">
                     Payment Method
                   </label>
-                  <div className="w-72 space-y-4">
+                  <div className="w-full space-y-4 sm:w-72">
                     <RadioOption
                       label="e-Money"
                       value="e-money"
@@ -290,8 +290,8 @@ export default function CheckoutPage() {
 
                 {/* Cash on Delivery */}
                 {watchPaymentMethod === "cash" && (
-                  <div className="mt-8 flex items-center gap-8">
-                    <div>
+                  <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:gap-8">
+                    <div className="shrink-0">
                       <Image
                         src="/assets/checkout/icon-cash-on-delivery.svg"
                         alt="Cash on delivery icon"
@@ -300,7 +300,7 @@ export default function CheckoutPage() {
                       />
                     </div>
                     <div className="flex-1">
-                      <p className="text-brand-black/50 text-[15px] leading-[25px]">
+                      <p className="text-brand-black/50 text-center text-[15px] leading-[25px] sm:text-left">
                         The &apos;Cash on Delivery&apos; option enables you to
                         pay in cash when our delivery courier arrives at your
                         residence. Just make sure your address is correct so
@@ -313,12 +313,12 @@ export default function CheckoutPage() {
             </form>
 
             {/* Summary */}
-            <div className="rounded-lg bg-white p-8">
-              <h2 className="text-brand-black mb-8 text-[18px] font-bold tracking-[1.29px] uppercase">
+            <div className="rounded-lg bg-white p-6 sm:p-8">
+              <h2 className="text-brand-black mb-6 text-[18px] font-bold tracking-[1.29px] uppercase sm:mb-8">
                 Summary
               </h2>
 
-              <div className="scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 mb-8 max-h-[300px] overflow-y-auto pr-2">
+              <div className="scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 mb-6 max-h-[300px] overflow-y-auto pr-2 sm:mb-8">
                 <div className="space-y-6">
                   {items.map((item) => (
                     <div key={item.id} className="flex items-center gap-4">

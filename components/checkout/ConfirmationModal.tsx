@@ -49,7 +49,7 @@ export function ConfirmationModal({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogOverlay className="bg-black/40" />
       <DialogContent
-        className="text-brand-black max-w-140 rounded-xl p-12"
+        className="text-brand-black w-[calc(100%-3rem)] max-w-135 rounded-xl p-8 sm:w-full sm:p-12"
         showCloseButton={false}
         aria-describedby="order-confirmation-description"
         aria-description="order-confirmation-description"
@@ -83,7 +83,7 @@ export function ConfirmationModal({
           </article>
 
           {/* Order summary */}
-          <article className="flex overflow-hidden rounded-lg">
+          <article className="flex overflow-hidden rounded-lg max-sm:flex-col">
             {/* Items section */}
             <div className="bg-brand-light text-brand-black basis-[65%] p-6">
               <div className="space-y-4">
@@ -168,7 +168,7 @@ export function ConfirmationModal({
               </div>
             </div>
             {/* Grand total section */}
-            <div className="bg-brand-black flex basis-[43%] flex-col items-center justify-center p-6">
+            <div className="bg-brand-black flex basis-[43%] flex-col items-center justify-center p-6 max-sm:items-start">
               <p className="mb-2 text-[15px] text-white/50">GRAND TOTAL</p>
               <p className="text-[18px] font-bold text-white">
                 $ {grandTotal.toLocaleString()}
